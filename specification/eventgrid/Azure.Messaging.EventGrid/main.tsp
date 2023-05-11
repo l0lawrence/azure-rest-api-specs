@@ -3,10 +3,6 @@ import "@typespec/rest";
 import "@typespec/versioning";
 import "@azure-tools/typespec-azure-core";
 
-enum ServiceApiVersions {
-  v2023_06_01_preview: "2023-06-01-preview"
-}
-
 @useAuth(
   ApiKeyAuth<ApiKeyLocation.header, "SharedAccessKey">
 )
@@ -42,6 +38,11 @@ namespace Azure.Messaging.EventGrid {
   using TypeSpec.Versioning;
   using Azure.Core;
   using Azure.Core.Foundations;
+
+  enum ServiceApiVersions {
+    @useDependency(Azure.Core.Versions.v1_0_Preview_2)
+    v2023_06_01_preview: "2023-06-01-preview"
+  }
 
   @doc("Properties of an event published to an Azure Messaging EventGrid Namespace topic using the CloudEvent 1.0 Schema.")
   model CloudEvent {
@@ -164,8 +165,9 @@ namespace Azure.Messaging.EventGrid {
   // POST https://{namespaceName}.{region}.eventgrid.azure.net/topics/{topicName}:publish?api-version={apiVersion}}
 
   @doc("Publish Single Cloud Event to namespace topic. In case of success, the server responds with an HTTP 200 status code with an empty JSON object in response. Otherwise, the server can return various error codes. For example, 401: which indicates authorization failure, 403: which indicates quota exceeded or message is too large, 410: which indicates that specific topic is not found, 400: for bad request, and 500: for internal server error. ")
-  @route("/topics/{topicName}:publish", {shared: true})
-  @post op PublishCloudEvent is Azure.Core.RpcOperation<{
+  @route("/topics/{topicName}:publish")
+  @sharedRoute
+  @post op publishCloudEvent is Azure.Core.RpcOperation<{
     @doc("content type")
     @header("content-type")
     contentType: "application/cloudevents+json; charset=utf-8";
@@ -180,8 +182,10 @@ namespace Azure.Messaging.EventGrid {
   }, PublishResult>;
 
 
-  @doc("Publish Batch Cloud Event to namespace topic. In case of success, the server responds with an HTTP 200 status code with an empty JSON object in response. Otherwise, the server can return various error codes. For example, 401: which indicates authorization failure, 403: which indicates quota exceeded or message is too large, 410: which indicates that specific topic is not found, 400: for bad request, and 500: for internal server error. ")  @route("/topics/{topicName}:publish", {shared: true})
-  @post op PublishCloudEvents is Azure.Core.RpcOperation<{
+  @doc("Publish Batch Cloud Event to namespace topic. In case of success, the server responds with an HTTP 200 status code with an empty JSON object in response. Otherwise, the server can return various error codes. For example, 401: which indicates authorization failure, 403: which indicates quota exceeded or message is too large, 410: which indicates that specific topic is not found, 400: for bad request, and 500: for internal server error. ")
+  @route("/topics/{topicName}:publish")
+  @sharedRoute
+  @post op publishCloudEvents is Azure.Core.RpcOperation<{
     @doc("content type")
     @header("content-type")
     contentType: "application/cloudevents-batch+json; charset=utf-8";
@@ -200,7 +204,7 @@ namespace Azure.Messaging.EventGrid {
    
   @doc("Receive Batch of Cloud Events from the Event Subscription.")
   @route("/topics/{topicName}/eventsubscriptions/{eventSubscriptionName}:receive")
-  @post op ReceiveCloudEvents is Azure.Core.RpcOperation<{
+  @post op receiveCloudEvents is Azure.Core.RpcOperation<{
     @doc("Topic Name.")
     @path
     topicName: string;
@@ -224,7 +228,7 @@ namespace Azure.Messaging.EventGrid {
   @doc("Acknowledge batch of Cloud Events. The server responds with an HTTP 200 status code if at least one event is successfully acknowledged. The response body will include the set of successfully acknowledged lockTokens, along with other failed lockTokens with their corresponding error information. Successfully acknowledged events will no longer be available to any consumer.")
 
   @route("/topics/{topicName}/eventsubscriptions/{eventSubscriptionName}:acknowledge")
-  @post op AcknowledgeCloudEvents is Azure.Core.RpcOperation<{
+  @post op acknowledgeCloudEvents is Azure.Core.RpcOperation<{
     @doc("content type")
     @header("content-type")
     contentType: "application/json; charset=utf-8";
@@ -247,7 +251,7 @@ namespace Azure.Messaging.EventGrid {
   
   @doc("Release batch of Cloud Events. The server responds with an HTTP 200 status code if at least one event is successfully released. The response body will include the set of successfully released lockTokens, along with other failed lockTokens with their corresponding error information.")
   @route("/topics/{topicName}/eventsubscriptions/{eventSubscriptionName}:release")
-  @post op ReleaseCloudEvents is Azure.Core.RpcOperation<{
+  @post op releaseCloudEvents is Azure.Core.RpcOperation<{
     @doc("content type")
     @header("content-type")
     contentType: "application/json; charset=utf-8";
@@ -270,7 +274,7 @@ namespace Azure.Messaging.EventGrid {
 
   @doc("Reject batch of Cloud Events.")
   @route("/topics/{topicName}/eventsubscriptions/{eventSubscriptionName}:reject")
-  @post op RejectCloudEvents is Azure.Core.RpcOperation<{
+  @post op rejectCloudEvents is Azure.Core.RpcOperation<{
     @doc("content type")
     @header("content-type")
     contentType: "application/json; charset=utf-8";
