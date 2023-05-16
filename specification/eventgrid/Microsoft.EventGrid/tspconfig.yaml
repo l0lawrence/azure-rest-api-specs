@@ -15,7 +15,7 @@ options:
     output-file: EventGrid.json
     emitter-output-dir: "{project-root}/../data-plane/Microsoft.EventGrid/preview/2023-06-01-preview"
   "@azure-tools/typespec-python":
-    "package-pprint-name": "\"Azure Eventgrid\""
+    "package-pprint-name": "\"Azure Event Grid\""
     "package-mode": "dataplane"
     "package-version": 4.12.0b1
     "package-name": "azure-eventgrid"
