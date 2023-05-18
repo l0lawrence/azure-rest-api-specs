@@ -45,7 +45,7 @@ namespace Azure.Messaging.EventGrid {
   }
 
   @doc("Properties of an event published to an Azure Messaging EventGrid Namespace topic using the CloudEvent 1.0 Schema.")
-  model CloudEvent {
+  model CloudEvent extends Record<unknown> {
     @doc("An identifier for the event. The combination of id and source must be unique for each distinct event.")
     id: string;
 
