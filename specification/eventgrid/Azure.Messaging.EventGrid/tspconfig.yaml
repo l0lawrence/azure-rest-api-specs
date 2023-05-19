@@ -1,6 +1,8 @@
 parameters:
   "python-sdk-folder":
     default: "{project-root}/azure-sdk-for-python/"
+  "csharp-sdk-folder":
+    default: "{project-root}/azure-sdk-for-net/"
   "service-directory-name":
     default: "eventgrid"
 emit: [
