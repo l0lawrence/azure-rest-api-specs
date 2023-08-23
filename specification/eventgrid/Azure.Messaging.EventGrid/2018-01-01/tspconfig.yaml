@@ -11,11 +11,11 @@ options:
     examples-directory: ../examples
     omit-unreachable-types: false
     output-file: TypespecEventGrid.json
-    emitter-output-dir: "{project-root}/../data-plane/Microsoft.EventGrid/stable/2018-01-01"
+    emitter-output-dir: "{project-root}/../../data-plane/Microsoft.EventGrid/stable/2018-01-01"
   "@azure-tools/typespec-python":
     package-pprint-name: "\"Azure Event Grid\""
     package-mode: "dataplane"
-    package-version: 4.12.0b1
+    package-version: 4.13.0
     package-dir: "azure-eventgrid"
     package-name: "{package-dir}"
     emitter-output-dir: "{project-root}/{service-dir}/{package-name}"
