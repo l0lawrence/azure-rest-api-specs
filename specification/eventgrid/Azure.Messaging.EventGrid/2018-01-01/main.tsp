@@ -20,7 +20,7 @@ import "@azure-tools/typespec-azure-core";
 )
 @doc("Azure EventGrid Client")
 @versioned(ServiceApiVersions)
-namespace EventGrid;
+namespace EventGridPublisher;
   using TypeSpec.Http;
   using TypeSpec.Rest;
   using TypeSpec.Versioning;
