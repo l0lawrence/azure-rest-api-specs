@@ -28,9 +28,9 @@ import "./main.tsp";
 
 using Azure.ClientGenerator.Core;
 
-@@internal(EventGrid.publishCloudEvent)
-@@internal(EventGrid.publishEventGridEvent)
-@@internal(EventGrid.publishCustomEvent)
+@@internal(EventGridPublisher.publishCloudEvent)
+@@internal(EventGridPublisher.publishEventGridEvent)
+@@internal(EventGridPublisher.publishCustomEvent)
 // @@include(EventGrid.ApiManagementUserCreatedEventData)
 // @@include(EventGrid.ApiManagementUserUpdatedEventData)
 // @@include(EventGrid.ApiManagementUserDeletedEventData)
