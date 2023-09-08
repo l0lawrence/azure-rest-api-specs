@@ -8,7 +8,7 @@ import "@azure-tools/typespec-azure-core";
   scheme: "SharedAccessKey",
 })
 @service({
-  title: "EventGridClient",
+  title: "EventGridPublisherClient",
 })
 @server(
   "{endpoint}",
