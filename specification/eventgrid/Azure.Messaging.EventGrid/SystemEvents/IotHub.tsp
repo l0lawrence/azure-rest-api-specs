@@ -120,20 +120,18 @@ model IotHubDeviceDisconnectedEventData
 @doc("Event data for Microsoft.Devices.DeviceTelemetry event.")
 model IotHubDeviceTelemetryEventData extends DeviceTelemetryEventProperties {}
 
-@doc("The thumbprint is a unique value for the x509 certificate, commonly used to find a particular certificate in a certificate store. The thumbprint is dynamically generated using the SHA1 algorithm, and does not physically exist in the certificate.")
-model ThumbPrintValue {
+alias ThumbPrintValue = {
   @doc("Primary thumbprint for the x509 certificate.")
   primaryThumbprint?: string;
 
   @doc("Secondary thumbprint for the x509 certificate.")
   secondaryThumbprint?: string;
-}
+};
 
-@doc("Properties JSON element.")
-model JsonProperties {
+alias JsonProperties = {
   @doc("A portion of the properties that can be written only by the application back-end, and read by the device.")
   desired?: DeviceTwinProperties;
 
   @doc("A portion of the properties that can be written only by the device, and read by the application back-end.")
   reported?: DeviceTwinProperties;
-}
+};
