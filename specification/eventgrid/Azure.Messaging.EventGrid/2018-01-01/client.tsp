@@ -28,10 +28,12 @@ import "./main.tsp";
 
 using Azure.ClientGenerator.Core;
 
-@@access(EventGrid.publishCloudEvent, Access.internal);z
+@@access(EventGrid.publishCloudEvent, Access.internal);
 @@access(EventGrid.publishEventGridEvent, Access.internal);
 @@access(EventGrid.publishCustomEvent, Access.internal);
-
+@@access(EventGrid.publishCloudEvents, Access.internal);
+@@access(EventGrid.publishEventGridEvents, Access.internal);
+@@access(EventGrid.publishCustomEvents, Access.internal);
 
 // @@usage(EventGrid.ApiManagementUserCreatedEventData, Usage.input | Usage.output);
 // @@usage(EventGrid.ApiManagementUserUpdatedEventData, Usage.input | Usage.output);

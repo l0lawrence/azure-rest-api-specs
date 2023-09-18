@@ -105,7 +105,7 @@ namespace EventGrid;
   @doc("Publish CloudEvents")
   @route("/send")
   @sharedRoute
-  op publishCloudEvent is Azure.Core.RpcOperation<
+  op publishCloudEvents is Azure.Core.RpcOperation<
     {
       @doc("content type")
       @header("content-type")
@@ -123,6 +123,44 @@ namespace EventGrid;
     {}
   >;
 
+  @doc("Publish CloudEvents")
+  @route("/send")
+  @sharedRoute
+  op publishCloudEvent is Azure.Core.RpcOperation<
+    {
+      @doc("content type")
+      @header("content-type")
+      contentType: "application/cloudevents-batch+json; charset=utf-8";
+
+      @doc("Required only when publishing to partner namespaces with partner topic routing mode ChannelNameHeader.")
+      @header("aeg-channel-name")
+      channelName?: string;
+
+      #suppress "@azure-tools/typespec-azure-core/request-body-problem" "Events is a valid request body."
+      @doc("Events being published.")
+      @body
+      events: CloudEventEvent;
+    },
+    {}
+  >;
+
+  @doc("Publish EventGridEvents")
+  @route("/send")
+  @sharedRoute
+  op publishEventGridEvents is Azure.Core.RpcOperation<
+    {
+      @doc("content type")
+      @header("content-type")
+      contentType: "application/json";
+
+      #suppress "@azure-tools/typespec-azure-core/request-body-problem" "Events is a valid request body."
+      @doc("Events being published.")
+      @body
+      events: EventGridEvent[];
+    },
+    {}
+  >;
+
   @doc("Publish EventGridEvents")
   @route("/send")
   @sharedRoute
@@ -135,7 +173,24 @@ namespace EventGrid;
       #suppress "@azure-tools/typespec-azure-core/request-body-problem" "Events is a valid request body."
       @doc("Events being published.")
       @body
-      events: EventGridEvent[];
+      events: EventGridEvent;
+    },
+    {}
+  >;
+
+  @doc("Publish custom events")
+  @route("/send")
+  @sharedRoute
+  op publishCustomEvents is Azure.Core.RpcOperation<
+    {
+      @doc("content type")
+      @header("content-type")
+      contentType: "application/json";
+
+      #suppress "@azure-tools/typespec-azure-core/request-body-problem" "Events is a valid request body."
+      @doc("Events being published.")
+      @body
+      events: CustomEventEvent[];
     },
     {}
   >;
@@ -152,7 +207,7 @@ namespace EventGrid;
       #suppress "@azure-tools/typespec-azure-core/request-body-problem" "Events is a valid request body."
       @doc("Events being published.")
       @body
-      events: CustomEventEvent[];
+      events: CustomEventEvent;
     },
     {}
   >;
