@@ -28,9 +28,6 @@ import "./main.tsp";
 
 using Azure.ClientGenerator.Core;
 
-@@access(EventGrid.publishCloudEvent, Access.internal);
-@@access(EventGrid.publishEventGridEvent, Access.internal);
-@@access(EventGrid.publishCustomEvent, Access.internal);
 @@access(EventGrid.publishCloudEvents, Access.internal);
 @@access(EventGrid.publishEventGridEvents, Access.internal);
 @@access(EventGrid.publishCustomEvents, Access.internal);
