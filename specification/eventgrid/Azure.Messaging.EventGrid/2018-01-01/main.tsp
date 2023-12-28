@@ -20,7 +20,7 @@ import "@azure-tools/typespec-azure-core";
 )
 @doc("Azure EventGrid Client")
 @versioned(ServiceApiVersions)
-namespace EventGrid;
+namespace Microsoft.EventGrid;
   using TypeSpec.Http;
   using TypeSpec.Rest;
   using TypeSpec.Versioning;
@@ -45,6 +45,7 @@ namespace EventGrid;
     @doc("A resource path relative to the topic path.")
     subject: string;
 
+    #suppress "@azure-tools/typespec-azure-core/no-unknown" "Using 'unknown' for data is intentional. Following EventGrid Event spec."
     @doc("Event data specific to the event type.")
     data: unknown;
 

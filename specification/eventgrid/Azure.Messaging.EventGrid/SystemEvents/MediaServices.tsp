@@ -1,5 +1,5 @@
 @doc("Describes the schema of the Azure Media Services events published to Azure Event Grid. This corresponds to the Data property of an EventGridEvent.")
-namespace EventGrid {
+namespace Microsoft.Eventgrid {
   @doc("State of a Media Job.")
   enum MediaJobState {
     @doc("The job was canceled. This is a final state for the job.")
@@ -136,10 +136,11 @@ namespace EventGrid {
   @doc("The event data for a Job output.")
   @discriminator("@odata.type")
   model MediaJobOutput {
-    #suppress "@azure-tools/typespec-azure-core/casing-style" "Modeling after service swagger."
-    @doc("The discriminator for derived types.")
-    @projectedName("json", "@odata.type")
-    OdataType?: string;
+    // TODO: Figure out emitter key error
+    // #suppress "@azure-tools/typespec-azure-core/casing-style" "Modeling after service swagger."
+    // @doc("The discriminator for derived types.")
+    // @projectedName("json", "@odata.type")
+    // OdataType?: string;
 
     @doc("Gets the Job output error.")
     error?: MediaJobError;
