@@ -104,7 +104,7 @@ namespace Microsoft.EventGrid;
   // USE SHARED ROUTES
 
   @doc("Publish CloudEvents")
-  @route("/send")
+  @route("/")
   @sharedRoute
   op publishCloudEvent is Azure.Core.RpcOperation<
     {
@@ -125,7 +125,7 @@ namespace Microsoft.EventGrid;
   >;
 
   @doc("Publish EventGridEvents")
-  @route("/send")
+  @route("/")
   @sharedRoute
   op publishEventGridEvent is Azure.Core.RpcOperation<
     {
@@ -142,7 +142,7 @@ namespace Microsoft.EventGrid;
   >;
 
   @doc("Publish custom events")
-  @route("/send")
+  @route("/")
   @sharedRoute
   op publishCustomEvent is Azure.Core.RpcOperation<
     {
