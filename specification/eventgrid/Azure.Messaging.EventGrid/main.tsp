@@ -45,6 +45,7 @@ namespace Microsoft.EventGrid;
     @doc("A resource path relative to the topic path.")
     subject: string;
 
+    #suppress "@azure-tools/typespec-azure-core/no-unknown" "Using 'unknown' for data is intentional. Following EventGrid Event spec."
     @doc("Event data specific to the event type.")
     data: unknown;
 
