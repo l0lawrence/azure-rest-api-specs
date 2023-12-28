@@ -63,9 +63,9 @@ using Azure.ClientGenerator.Core;
 
 // Models
 
-@@access(Microsoft.EventGrid.publishCloudEvent, Access.internal);
-@@access(Microsoft.EventGrid.publishCloudEvents, Access.internal);
-@@access(Microsoft.EventGrid.receiveCloudEvents, Access.internal);
+// @@access(Microsoft.EventGrid.publishCloudEvent, Access.internal);
+// @@access(Microsoft.EventGrid.publishCloudEvents, Access.internal);
+// @@access(Microsoft.EventGrid.receiveCloudEvents, Access.internal);
 
 @@usage(Microsoft.EventGrid.ApiManagementUserCreatedEventData,
   Usage.input | Usage.output
