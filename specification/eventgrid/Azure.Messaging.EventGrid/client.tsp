@@ -66,6 +66,7 @@ interface EventGridClient {
 @@access(Microsoft.EventGrid.publishCloudEvent, Access.internal);
 @@access(Microsoft.EventGrid.publishCloudEvents, Access.internal);
 @@access(Microsoft.EventGrid.receiveCloudEvents, Access.internal);
+
 @@usage(Microsoft.EventGrid.ApiManagementUserCreatedEventData,
   Usage.input | Usage.output
 );
@@ -483,6 +484,7 @@ interface EventGridClient {
 @@usage(Microsoft.EventGrid.AcsRouterCommunicationError,
   Usage.input | Usage.output
 );
+// TODO: Internal for now -- issue in emitter
 @@access(Microsoft.EventGrid.AcsRouterCommunicationError, Access.internal);
 @@usage(Microsoft.EventGrid.AcsRouterWorkerSelector,
   Usage.input | Usage.output
@@ -546,6 +548,22 @@ interface EventGridClient {
   Usage.input | Usage.output
 );
 @@access(Microsoft.EventGrid.AcsIncomingCallCustomContext, Access.public);
+@@usage(Microsoft.EventGrid.CommunicationIdentifierModel,
+  Usage.input | Usage.output
+);
+@@access(Microsoft.EventGrid.CommunicationIdentifierModel, Access.public);
+@@usage(Microsoft.EventGrid.MicrosoftTeamsUserIdentifierModel,
+  Usage.input | Usage.output
+);
+@@access(Microsoft.EventGrid.MicrosoftTeamsUserIdentifierModel, Access.public);
+@@usage(Microsoft.EventGrid.PhoneNumberIdentifierModel,
+  Usage.input | Usage.output
+);
+@@access(Microsoft.EventGrid.PhoneNumberIdentifierModel, Access.public);
+@@usage(Microsoft.EventGrid.CommunicationUserIdentifierModel,
+  Usage.input | Usage.output
+);
+@@access(Microsoft.EventGrid.CommunicationUserIdentifierModel, Access.public);
 @@usage(Microsoft.EventGrid.ContainerRegistryImagePushedEventData,
   Usage.input | Usage.output
 );
