@@ -141,6 +141,9 @@ namespace Microsoft.EventGrid.SystemEvents {
   /** The event data for a Job output. */
   @discriminator("oDataType")
   model MediaJobOutput {
+    /** The discriminator for derived types. */
+    `@odataType`: string;
+
     /** Gets the Job output error. */
     error?: MediaJobError;
 

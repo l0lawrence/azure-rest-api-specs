@@ -1727,10 +1727,7 @@
         },
         "labelValue": {
           "type": "object",
-          "description": "Router Job Worker Selector Value",
-          "additionalProperties": {
-            "type": "string"
-          }
+          "description": "Router Job Worker Selector Value"
         },
         "timeToLive": {
           "type": "string",
@@ -3097,10 +3094,7 @@
       "properties": {
         "body": {
           "type": "object",
-          "description": "The content of the message from the device.",
-          "additionalProperties": {
-            "type": "string"
-          }
+          "description": "The content of the message from the device."
         },
         "properties": {
           "type": "object",
@@ -5152,9 +5146,11 @@
           "description": "A common separated list of model IDs. The IDs of the models deployed in the service."
         },
         "serviceTags": {
+          "type": "object",
           "description": "The tags of the deployed service."
         },
         "serviceProperties": {
+          "type": "object",
           "description": "The properties of the deployed service."
         }
       }
@@ -5173,17 +5169,11 @@
         },
         "modelTags": {
           "type": "object",
-          "description": "The tags of the model that was registered.",
-          "additionalProperties": {
-            "type": "string"
-          }
+          "description": "The tags of the model that was registered."
         },
         "modelProperties": {
           "type": "object",
-          "description": "The properties of the model that was registered.",
-          "additionalProperties": {
-            "type": "string"
-          }
+          "description": "The properties of the model that was registered."
         }
       }
     },
@@ -5209,17 +5199,11 @@
         },
         "runTags": {
           "type": "object",
-          "description": "The tags of the completed Run.",
-          "additionalProperties": {
-            "type": "string"
-          }
+          "description": "The tags of the completed Run."
         },
         "runProperties": {
           "type": "object",
-          "description": "The properties of the completed Run.",
-          "additionalProperties": {
-            "type": "string"
-          }
+          "description": "The properties of the completed Run."
         }
       }
     },
@@ -5245,17 +5229,11 @@
         },
         "runTags": {
           "type": "object",
-          "description": "The tags of the Machine Learning Run.",
-          "additionalProperties": {
-            "type": "string"
-          }
+          "description": "The tags of the Machine Learning Run."
         },
         "runProperties": {
           "type": "object",
-          "description": "The properties of the Machine Learning Run.",
-          "additionalProperties": {
-            "type": "string"
-          }
+          "description": "The properties of the Machine Learning Run."
         },
         "runStatus": {
           "type": "string",
@@ -5600,6 +5578,10 @@
           "type": "string",
           "description": "Discriminator property for MediaJobOutput."
         },
+        "@odataType": {
+          "type": "string",
+          "description": "The discriminator for derived types."
+        },
         "error": {
           "$ref": "#/definitions/MediaJobError",
           "description": "Gets the Job output error."
@@ -5621,6 +5603,7 @@
       "discriminator": "oDataType",
       "required": [
         "oDataType",
+        "@odataType",
         "progress",
         "state"
       ]
@@ -7358,6 +7341,7 @@
           "description": "The identity of the requester that triggered this event."
         },
         "storageDiagnostics": {
+          "type": "object",
           "description": "For service use only. Diagnostic data occasionally included by the Azure Storage service. This property should be ignored by event consumers."
         },
         "sequencer": {
@@ -7413,6 +7397,7 @@
           "description": "The identity of the requester that triggered this event."
         },
         "storageDiagnostics": {
+          "type": "object",
           "description": "For service use only. Diagnostic data occasionally included by the Azure Storage service. This property should be ignored by event consumers."
         },
         "sequencer": {
@@ -7463,6 +7448,7 @@
           "description": "The identity of the requester that triggered this event."
         },
         "storageDiagnostics": {
+          "type": "object",
           "description": "For service use only. Diagnostic data occasionally included by the Azure Storage service. This property should be ignored by event consumers."
         },
         "sequencer": {
@@ -7543,6 +7529,7 @@
           "description": "The identity of the requester that triggered this event."
         },
         "storageDiagnostics": {
+          "type": "object",
           "description": "For service use only. Diagnostic data occasionally included by the Azure Storage service. This property should be ignored by event consumers."
         },
         "sequencer": {
@@ -7572,6 +7559,7 @@
           "description": "The identity of the requester that triggered this event."
         },
         "storageDiagnostics": {
+          "type": "object",
           "description": "For service use only. Diagnostic data occasionally included by the Azure Storage service. This property should be ignored by event consumers."
         },
         "sequencer": {
@@ -7626,6 +7614,7 @@
           "description": "The identity of the requester that triggered this event."
         },
         "storageDiagnostics": {
+          "type": "object",
           "description": "For service use only. Diagnostic data occasionally included by the Azure Storage service. This property should be ignored by event consumers."
         },
         "sequencer": {
@@ -7663,6 +7652,7 @@
           "description": "The identity of the requester that triggered this event."
         },
         "storageDiagnostics": {
+          "type": "object",
           "description": "For service use only. Diagnostic data occasionally included by the Azure Storage service. This property should be ignored by event consumers."
         },
         "sequencer": {
@@ -7700,6 +7690,7 @@
           "description": "The identity of the requester that triggered this event."
         },
         "storageDiagnostics": {
+          "type": "object",
           "description": "For service use only. Diagnostic data occasionally included by the Azure Storage service. This property should be ignored by event consumers."
         },
         "sequencer": {
@@ -7932,6 +7923,10 @@
           "$ref": "#/definitions/AppServicePlanEventTypeDetail",
           "description": "Detail of action on the app service plan."
         },
+        "sku": {
+          "$ref": "#/definitions/WebAppServicePlanUpdatedEventDataSku",
+          "description": "sku of app service plan."
+        },
         "name": {
           "type": "string",
           "description": "name of the app service plan that had this event."
@@ -7955,10 +7950,6 @@
         "verb": {
           "type": "string",
           "description": "HTTP verb of this operation."
-        },
-        "sku": {
-          "$ref": "#/definitions/WebAppServicePlanUpdatedEventDataSku",
-          "description": "sku of app service plan."
         }
       }
     },
