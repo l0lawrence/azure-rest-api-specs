@@ -2,7 +2,7 @@
 namespace Microsoft.EventGrid.SystemEvents;
 
 /** EventGrid MQTT Client State */
-union EventGridMQTTClientState {
+enum EventGridMQTTClientState {
   /** Enabled */
   "Enabled",
 
@@ -11,7 +11,7 @@ union EventGridMQTTClientState {
 }
 
 /** EventGrid MQTT Client Disconnection Reason */
-union EventGridMQTTClientDisconnectionReason {
+enum EventGridMQTTClientDisconnectionReason {
   /** The client got disconnected for any authentication reasons (for example, certificate expired, client got disabled, or client configuration changed). */
   "ClientAuthenticationError",
 

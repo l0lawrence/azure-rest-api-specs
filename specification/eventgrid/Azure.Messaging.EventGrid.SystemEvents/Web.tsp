@@ -95,7 +95,7 @@ namespace Microsoft.EventGrid.SystemEvents {
   }
 
   /** App Action Type */
-  union AppAction {
+  enum AppAction {
     /** Web app was restarted. */
     "Restarted",
 
@@ -116,7 +116,7 @@ namespace Microsoft.EventGrid.SystemEvents {
   }
 
   /** Kind of environment where app service plan is. */
-  union StampKind {
+  enum StampKind {
     /** App Service Plan is running on a public stamp. */
     "Public",
 
@@ -128,7 +128,7 @@ namespace Microsoft.EventGrid.SystemEvents {
   }
 
   /** Type of action on the app service plan. */
-  union AppServicePlanAction {
+  enum AppServicePlanAction {
     /** App Service plan is being updated. */
     "Updated",
   }
@@ -146,7 +146,7 @@ namespace Microsoft.EventGrid.SystemEvents {
   }
 
   /** Asynchronous operation status of the operation on the app service plan. */
-  union AsyncStatus {
+  enum AsyncStatus {
     /** Async operation has started. */
     "Started",
 

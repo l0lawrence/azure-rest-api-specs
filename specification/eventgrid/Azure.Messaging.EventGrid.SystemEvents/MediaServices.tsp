@@ -1,7 +1,7 @@
 /** Describes the schema of the Azure Media Services events published to Azure Event Grid. This corresponds to the Data property of an EventGridEvent. */
 namespace Microsoft.EventGrid.SystemEvents {
   /** State of a Media Job. */
-  union MediaJobState {
+  enum MediaJobState {
     /** The job was canceled. This is a final state for the job. */
     "Canceled",
 
@@ -25,7 +25,7 @@ namespace Microsoft.EventGrid.SystemEvents {
   }
 
   /** Media Job Error Codes. */
-  union MediaJobErrorCode {
+  enum MediaJobErrorCode {
     /** Fatal service error, please contact support. */
     "ServiceError",
 
@@ -58,7 +58,7 @@ namespace Microsoft.EventGrid.SystemEvents {
   }
 
   /** Error categories for Media Job Errors. */
-  union MediaJobErrorCategory {
+  enum MediaJobErrorCategory {
     /** The error is service related. */
     "Service",
 
@@ -79,7 +79,7 @@ namespace Microsoft.EventGrid.SystemEvents {
   }
 
   /** Media Job Retry Options. */
-  union MediaJobRetry {
+  enum MediaJobRetry {
     /** Issue needs to be investigated and then the job resubmitted with corrections or retried once the underlying issue has been corrected. */
     "DoNotRetry",
 
