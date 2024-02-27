@@ -375,7 +375,9 @@
         "properties": {
           "type": "object",
           "description": "The thread properties",
-          "additionalProperties": {}
+          "additionalProperties": {
+            "type": "string"
+          }
         },
         "metadata": {
           "type": "object",
@@ -410,7 +412,9 @@
         "properties": {
           "type": "object",
           "description": "The thread properties",
-          "additionalProperties": {}
+          "additionalProperties": {
+            "type": "string"
+          }
         },
         "metadata": {
           "type": "object",
@@ -1722,7 +1726,11 @@
           "description": "Router Job Worker Selector Label Operator"
         },
         "labelValue": {
-          "description": "Router Job Worker Selector Value"
+          "type": "object",
+          "description": "Router Job Worker Selector Value",
+          "additionalProperties": {
+            "type": "string"
+          }
         },
         "timeToLive": {
           "type": "string",
@@ -3080,7 +3088,11 @@
       "description": "Schema of the Data property of an EventGridEvent for a device telemetry event (DeviceTelemetry).",
       "properties": {
         "body": {
-          "description": "The content of the message from the device."
+          "type": "object",
+          "description": "The content of the message from the device.",
+          "additionalProperties": {
+            "type": "string"
+          }
         },
         "properties": {
           "type": "object",
@@ -5188,10 +5200,18 @@
           "description": "The Run Type of the completed Run."
         },
         "runTags": {
-          "description": "The tags of the completed Run."
+          "type": "object",
+          "description": "The tags of the completed Run.",
+          "additionalProperties": {
+            "type": "string"
+          }
         },
         "runProperties": {
-          "description": "The properties of the completed Run."
+          "type": "object",
+          "description": "The properties of the completed Run.",
+          "additionalProperties": {
+            "type": "string"
+          }
         }
       }
     },
@@ -6908,7 +6928,9 @@
         "properties": {
           "type": "object",
           "description": "properties in the payload of the resource for which the event is being emitted",
-          "additionalProperties": {}
+          "additionalProperties": {
+            "type": "string"
+          }
         }
       }
     },

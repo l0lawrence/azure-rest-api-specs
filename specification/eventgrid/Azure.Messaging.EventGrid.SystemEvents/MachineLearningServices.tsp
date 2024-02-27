@@ -51,12 +51,12 @@ model MachineLearningServicesRunCompletedEventData {
   runType?: string;
 
   /** The tags of the completed Run. */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "Run tags is type any"
-  runTags?: unknown;
+  #suppress "@azure-tools/typespec-azure-core/bad-record-type" "Run tags is type any"
+  runTags?: Record<string>;
 
   /** The properties of the completed Run. */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "Run properties is type any"
-  runProperties?: unknown;
+  #suppress "@azure-tools/typespec-azure-core/bad-record-type" "Run properties is type any"
+  runProperties?: Record<string>;
 }
 
 /** Schema of the Data property of an EventGridEvent for a Microsoft.MachineLearningServices.DatasetDriftDetected event. */
