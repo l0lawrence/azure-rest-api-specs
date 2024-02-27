@@ -3,17 +3,47 @@ namespace Microsoft.EventGrid.SystemEvents {
   // model HealthcareFhirResourceType is string {}
   /** Schema of the Data property of an EventGridEvent for a Microsoft.HealthcareApis.FhirResourceCreated event. */
   model HealthcareFhirResourceCreatedEventData {
-    ...HealthcareFhirResourceBaseEventData;
+    /** Type of HL7 FHIR resource. */
+    resourceType?: HealthcareFhirResourceType;
+
+    /** Domain name of FHIR account for this resource. */
+    resourceFhirAccount?: string;
+
+    /** Id of HL7 FHIR resource. */
+    resourceFhirId?: string;
+
+    /** VersionId of HL7 FHIR resource. It changes when the resource is created, updated, or deleted(soft-deletion). */
+    resourceVersionId?: int64;
   }
 
   /** Schema of the Data property of an EventGridEvent for a Microsoft.HealthcareApis.FhirResourceUpdated event. */
   model HealthcareFhirResourceUpdatedEventData {
-    ...HealthcareFhirResourceBaseEventData;
+    /** Type of HL7 FHIR resource. */
+    resourceType?: HealthcareFhirResourceType;
+
+    /** Domain name of FHIR account for this resource. */
+    resourceFhirAccount?: string;
+
+    /** Id of HL7 FHIR resource. */
+    resourceFhirId?: string;
+
+    /** VersionId of HL7 FHIR resource. It changes when the resource is created, updated, or deleted(soft-deletion). */
+    resourceVersionId?: int64;
   }
 
   /** Schema of the Data property of an EventGridEvent for a Microsoft.HealthcareApis.FhirResourceDeleted event. */
   model HealthcareFhirResourceDeletedEventData {
-    ...HealthcareFhirResourceBaseEventData;
+    /** Type of HL7 FHIR resource. */
+    resourceType?: HealthcareFhirResourceType;
+
+    /** Domain name of FHIR account for this resource. */
+    resourceFhirAccount?: string;
+
+    /** Id of HL7 FHIR resource. */
+    resourceFhirId?: string;
+
+    /** VersionId of HL7 FHIR resource. It changes when the resource is created, updated, or deleted(soft-deletion). */
+    resourceVersionId?: int64;
   }
 
   /** Schema of the Data property of an EventGridEvent for a Microsoft.HealthcareApis.DicomImageCreated event. */
@@ -80,7 +110,7 @@ namespace Microsoft.EventGrid.SystemEvents {
   }
 
   /** Schema of FHIR resource type enumeration. */
-  enum HealthcareFhirResourceType {
+  union HealthcareFhirResourceType {
     /** The FHIR resource type defined in STU3 and R4. */
     "Account",
 
@@ -563,20 +593,7 @@ namespace Microsoft.EventGrid.SystemEvents {
 
     /** The FHIR resource type defined in STU3 and R4. */
     "VisionPrescription",
-  }
 
-  /** Base Event for Healthcare Fhir Resource */
-  model HealthcareFhirResourceBaseEventData {
-    /** Domain name of FHIR account for this resource. */
-    resourceFhirAccount?: string;
-
-    /** Id of HL7 FHIR resource. */
-    resourceFhirId?: string;
-
-    /** VersionId of HL7 FHIR resource. It changes when the resource is created, updated, or deleted(soft-deletion). */
-    resourceVersionId?: int64;
-
-    /** Type of HL7 FHIR resource. */
-    resourceType?: HealthcareFhirResourceType;
+    string,
   }
 }

@@ -388,7 +388,7 @@ model AcsRouterJobReceivedEventData extends AcsRouterJobEventData {
 }
 
 /** Acs Router Job Status */
-enum AcsRouterJobStatus {
+union AcsRouterJobStatus {
   /** Router Job Status Pending Classification */
   "PendingClassification",
 
@@ -424,6 +424,8 @@ enum AcsRouterJobStatus {
 
   /** Router Job Status Waiting For Activation */
   "WaitingForActivation",
+
+  string,
 }
 
 /** Schema of the Data property of an EventGridEvent for a Microsoft.Communication.RouterJobSchedulingFailed event */
@@ -698,7 +700,7 @@ model AcsRouterWorkerSelector {
 
   /** Router Job Worker Selector Time to Live in Seconds */
   @encode("ISO8601") // TODO verify this is timespan in C#
-  timeToLive?: duration;
+  ttlSeconds?: duration;
 
   /** Router Job Worker Selector State */
   selectorState?: AcsRouterWorkerSelectorState;
@@ -723,7 +725,7 @@ alias AcsChatThreadBaseEventData = {
   #suppress "@azure-tools/typespec-azure-core/bad-record-type" "The type of properties is object with additionalProperties: object"
   properties?: Record<string>;
 
-  /** The chat thread created metadata */
+  /** The thread metadata */
   metadata?: Record<string>;
 
   /** The list of properties of participants who are part of the thread */
@@ -765,25 +767,29 @@ alias AcsChatParticipantBaseEventData = {
 };
 
 /** Recording content type */
-enum recordingContentType {
+union recordingContentType {
   /** AudioVideo content type */
   "AudioVideo",
 
   /** Audio content type */
   "Audio",
+
+  string,
 }
 
 /** Recording channel type */
-enum recordingChannelType {
+union recordingChannelType {
   /** Mixed channel type */
   "Mixed",
 
   /** Unmixed channel type */
   "Unmixed",
+
+  string,
 }
 
 /** Recording format type */
-enum recordingFormatType {
+union recordingFormatType {
   /** WAV format */
   "Wav",
 
@@ -792,10 +798,12 @@ enum recordingFormatType {
 
   /** MP4 format */
   "Mp4",
+
+  string,
 }
 
 /** Router Job Worker Selector Label Operator */
-enum AcsRouterLabelOperator {
+union AcsRouterLabelOperator {
   /** Router Label Operator Equal */
   "Equal",
 
@@ -813,19 +821,23 @@ enum AcsRouterLabelOperator {
 
   /** Router Label Operator Less than or equal */
   "LessThanOrEqual",
+
+  string,
 }
 
 /** Router Worker Selector State */
-enum AcsRouterWorkerSelectorState {
+union AcsRouterWorkerSelectorState {
   /** Router Worker Selector State Active */
   Active: "active",
 
   /** Router Worker Selector State Expired */
   Expired: "expired",
+
+  string,
 }
 
 /** The status of the email. Any value other than Delivered is considered failed. */
-enum AcsEmailDeliveryReportStatus {
+union AcsEmailDeliveryReportStatus {
   /** Hard bounce detected while sending the email */
   "Bounced",
 
@@ -843,6 +855,8 @@ enum AcsEmailDeliveryReportStatus {
 
   /** The email was suppressed */
   "Suppressed",
+
+  string,
 }
 
 /** Detailed information about the status if any */
@@ -1007,15 +1021,17 @@ model AcsIncomingCallCustomContext {
 }
 
 /** The type of engagement user have with email. */
-enum AcsUserEngagement {
+union AcsUserEngagement {
   /** View */
   "view",
 
   /** Click */
   "click",
+
+  string,
 }
 
-/** Identifies a participant in Azure Communication services. A participant is, for example, a phone number or an Azure communication user. This model must be interpreted as a union: Apart from rawId, at most one further property may be set. */
+/** Identifies a participant in Azure Communication services. A participant is, for example, a phone number or an Azure communication user. This model must be interpreted as a union : Apart from rawId, at most one further property may be set. */
 model CommunicationIdentifierModel {
   /** Raw Id of the identifier. Optional in requests, required in responses. */
   rawId?: string;
@@ -1055,7 +1071,7 @@ model CommunicationUserIdentifierModel {
 }
 
 /** Communication cloud environment model. */
-enum CommunicationCloudEnvironmentModel {
+union CommunicationCloudEnvironmentModel {
   /** Public */
   "public",
 
@@ -1064,4 +1080,6 @@ enum CommunicationCloudEnvironmentModel {
 
   /** Gcch */
   "gcch",
+
+  string,
 }

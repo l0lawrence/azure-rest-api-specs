@@ -27,7 +27,7 @@ namespace Microsoft.EventGrid.SystemEvents {
   };
 
   /** Schema of DataBox Stage Name enumeration. */
-  enum DataBoxStageName {
+  union DataBoxStageName {
     /** Copy has started */
     "CopyStarted",
 
@@ -36,5 +36,7 @@ namespace Microsoft.EventGrid.SystemEvents {
 
     /** Order has been completed */
     "OrderCompleted",
+
+    string,
   }
 }

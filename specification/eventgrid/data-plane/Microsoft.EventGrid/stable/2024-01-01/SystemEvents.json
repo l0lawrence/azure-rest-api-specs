@@ -381,7 +381,7 @@
         },
         "metadata": {
           "type": "object",
-          "description": "The chat thread created metadata",
+          "description": "The thread metadata",
           "additionalProperties": {
             "type": "string"
           }
@@ -418,7 +418,7 @@
         },
         "metadata": {
           "type": "object",
-          "description": "The chat thread created metadata",
+          "description": "The thread metadata",
           "additionalProperties": {
             "type": "string"
           }
@@ -540,6 +540,13 @@
           "additionalProperties": {
             "type": "string"
           }
+        },
+        "metadata": {
+          "type": "object",
+          "description": "The thread metadata",
+          "additionalProperties": {
+            "type": "string"
+          }
         }
       },
       "allOf": [
@@ -560,6 +567,13 @@
           "type": "string",
           "format": "date-time",
           "description": "The time at which the properties of the thread were updated"
+        },
+        "metadata": {
+          "type": "object",
+          "description": "The thread metadata",
+          "additionalProperties": {
+            "type": "string"
+          }
         },
         "properties": {
           "type": "object",
@@ -1727,9 +1741,12 @@
         },
         "labelValue": {
           "type": "object",
-          "description": "Router Job Worker Selector Value"
+          "description": "Router Job Worker Selector Value",
+          "additionalProperties": {
+            "type": "string"
+          }
         },
-        "timeToLive": {
+        "ttlSeconds": {
           "type": "string",
           "format": "duration",
           "description": "Router Job Worker Selector Time to Live in Seconds"
@@ -2160,7 +2177,7 @@
     },
     "AppAction": {
       "type": "string",
-      "description": "App Action Type",
+      "description": "Type of action of the operation",
       "enum": [
         "Restarted",
         "Stopped",
@@ -2409,12 +2426,7 @@
             "type": "string"
           }
         }
-      },
-      "required": [
-        "addedHostNames",
-        "removedHostNames",
-        "inMaintenanceHostNames"
-      ]
+      }
     },
     "AvsClusterFailedEventData": {
       "type": "object",
@@ -2549,9 +2561,6 @@
           }
         }
       },
-      "required": [
-        "namedOutputs"
-      ],
       "allOf": [
         {
           "$ref": "#/definitions/AvsScriptExecutionEventData"
@@ -2590,7 +2599,7 @@
     },
     "CommunicationIdentifierModel": {
       "type": "object",
-      "description": "Identifies a participant in Azure Communication services. A participant is, for example, a phone number or an Azure communication user. This model must be interpreted as a union: Apart from rawId, at most one further property may be set.",
+      "description": "Identifies a participant in Azure Communication services. A participant is, for example, a phone number or an Azure communication user. This model must be interpreted as a union : Apart from rawId, at most one further property may be set.",
       "properties": {
         "rawId": {
           "type": "string",
@@ -2827,22 +2836,22 @@
           "type": "string",
           "description": "The digest of the content, as defined by the Registry V2 HTTP API Specification."
         },
-        "repository": {
-          "type": "string",
-          "description": "The repository name."
-        },
-        "tag": {
-          "type": "string",
-          "description": "The tag name."
-        },
         "length": {
           "type": "integer",
           "format": "int64",
           "description": "The number of bytes of the content. Same as Size field."
         },
+        "repository": {
+          "type": "string",
+          "description": "The repository name."
+        },
         "url": {
           "type": "string",
           "description": "The direct URL to the content."
+        },
+        "tag": {
+          "type": "string",
+          "description": "The tag name."
         }
       }
     },
@@ -3094,7 +3103,10 @@
       "properties": {
         "body": {
           "type": "object",
-          "description": "The content of the message from the device."
+          "description": "The content of the message from the device.",
+          "additionalProperties": {
+            "type": "string"
+          }
         },
         "properties": {
           "type": "object",
@@ -3224,18 +3236,6 @@
       "type": "object",
       "description": "Event data for Microsoft.EventGrid.SystemEvents.MQTTClientCreatedOrUpdated event.",
       "properties": {
-        "clientAuthenticationName": {
-          "type": "string",
-          "description": "Unique identifier for the MQTT client that the client presents to the service\nfor authentication. This case-sensitive string can be up to 128 characters\nlong, and supports UTF-8 characters."
-        },
-        "clientName": {
-          "type": "string",
-          "description": "Name of the client resource in the Event Grid namespace."
-        },
-        "namespaceName": {
-          "type": "string",
-          "description": "Name of the Event Grid namespace where the MQTT client was created or updated."
-        },
         "state": {
           "$ref": "#/definitions/EventGridMQTTClientState",
           "description": "Configured state of the client. The value could be Enabled or Disabled"
@@ -3257,25 +3257,21 @@
             "type": "string"
           }
         }
-      }
+      },
+      "allOf": [
+        {
+          "$ref": "#/definitions/EventGridMQTTClientEventData"
+        }
+      ]
     },
     "EventGridMQTTClientDeletedEventData": {
       "type": "object",
       "description": "Event data for Microsoft.EventGrid.SystemEvents.MQTTClientDeleted event.",
-      "properties": {
-        "clientAuthenticationName": {
-          "type": "string",
-          "description": "Unique identifier for the MQTT client that the client presents to the service\nfor authentication. This case-sensitive string can be up to 128 characters\nlong, and supports UTF-8 characters."
-        },
-        "clientName": {
-          "type": "string",
-          "description": "Name of the client resource in the Event Grid namespace."
-        },
-        "namespaceName": {
-          "type": "string",
-          "description": "Name of the Event Grid namespace where the MQTT client was created or updated."
+      "allOf": [
+        {
+          "$ref": "#/definitions/EventGridMQTTClientEventData"
         }
-      }
+      ]
     },
     "EventGridMQTTClientDisconnectionReason": {
       "type": "string",
@@ -3377,18 +3373,6 @@
       "type": "object",
       "description": "Event data for Microsoft.EventGrid.SystemEvents.MQTTClientSessionConnected event.",
       "properties": {
-        "clientAuthenticationName": {
-          "type": "string",
-          "description": "Unique identifier for the MQTT client that the client presents to the service\nfor authentication. This case-sensitive string can be up to 128 characters\nlong, and supports UTF-8 characters."
-        },
-        "clientName": {
-          "type": "string",
-          "description": "Name of the client resource in the Event Grid namespace."
-        },
-        "namespaceName": {
-          "type": "string",
-          "description": "Name of the Event Grid namespace where the MQTT client was created or updated."
-        },
         "clientSessionName": {
           "type": "string",
           "description": "Unique identifier for the MQTT client's session. This case-sensitive string can\nbe up to 128 characters long, and supports UTF-8 characters."
@@ -3398,24 +3382,17 @@
           "format": "int64",
           "description": "A number that helps indicate order of MQTT client session connected or\ndisconnected events. Latest event will have a sequence number that is higher\nthan the previous event."
         }
-      }
+      },
+      "allOf": [
+        {
+          "$ref": "#/definitions/EventGridMQTTClientEventData"
+        }
+      ]
     },
     "EventGridMQTTClientSessionDisconnectedEventData": {
       "type": "object",
       "description": "Event data for Microsoft.EventGrid.SystemEvents.MQTTClientSessionDisconnected event.",
       "properties": {
-        "clientAuthenticationName": {
-          "type": "string",
-          "description": "Unique identifier for the MQTT client that the client presents to the service\nfor authentication. This case-sensitive string can be up to 128 characters\nlong, and supports UTF-8 characters."
-        },
-        "clientName": {
-          "type": "string",
-          "description": "Name of the client resource in the Event Grid namespace."
-        },
-        "namespaceName": {
-          "type": "string",
-          "description": "Name of the Event Grid namespace where the MQTT client was created or updated."
-        },
         "clientSessionName": {
           "type": "string",
           "description": "Unique identifier for the MQTT client's session. This case-sensitive string can\nbe up to 128 characters long, and supports UTF-8 characters."
@@ -3429,7 +3406,12 @@
           "$ref": "#/definitions/EventGridMQTTClientDisconnectionReason",
           "description": "Reason for the disconnection of the MQTT client's session. The value could be\none of the values in the disconnection reasons table."
         }
-      }
+      },
+      "allOf": [
+        {
+          "$ref": "#/definitions/EventGridMQTTClientEventData"
+        }
+      ]
     },
     "EventGridMQTTClientState": {
       "type": "string",
@@ -3597,37 +3579,15 @@
         }
       }
     },
-    "HealthcareFhirResourceBaseEventData": {
-      "type": "object",
-      "description": "Base Event for Healthcare Fhir Resource",
-      "properties": {
-        "resourceFhirAccount": {
-          "type": "string",
-          "description": "Domain name of FHIR account for this resource.",
-          "x-ms-client-name": "FhirServiceHostName"
-        },
-        "resourceFhirId": {
-          "type": "string",
-          "description": "Id of HL7 FHIR resource.",
-          "x-ms-client-name": "FhirResourceId"
-        },
-        "resourceVersionId": {
-          "type": "integer",
-          "format": "int64",
-          "description": "VersionId of HL7 FHIR resource. It changes when the resource is created, updated, or deleted(soft-deletion).",
-          "x-ms-client-name": "FhirResourceVersionId"
-        },
-        "resourceType": {
-          "$ref": "#/definitions/HealthcareFhirResourceType",
-          "description": "Type of HL7 FHIR resource.",
-          "x-ms-client-name": "FhirResourceType"
-        }
-      }
-    },
     "HealthcareFhirResourceCreatedEventData": {
       "type": "object",
       "description": "Schema of the Data property of an EventGridEvent for a Microsoft.HealthcareApis.FhirResourceCreated event.",
       "properties": {
+        "resourceType": {
+          "$ref": "#/definitions/HealthcareFhirResourceType",
+          "description": "Type of HL7 FHIR resource.",
+          "x-ms-client-name": "FhirResourceType"
+        },
         "resourceFhirAccount": {
           "type": "string",
           "description": "Domain name of FHIR account for this resource.",
@@ -3643,11 +3603,6 @@
           "format": "int64",
           "description": "VersionId of HL7 FHIR resource. It changes when the resource is created, updated, or deleted(soft-deletion).",
           "x-ms-client-name": "FhirResourceVersionId"
-        },
-        "resourceType": {
-          "$ref": "#/definitions/HealthcareFhirResourceType",
-          "description": "Type of HL7 FHIR resource.",
-          "x-ms-client-name": "FhirResourceType"
         }
       }
     },
@@ -3655,6 +3610,11 @@
       "type": "object",
       "description": "Schema of the Data property of an EventGridEvent for a Microsoft.HealthcareApis.FhirResourceDeleted event.",
       "properties": {
+        "resourceType": {
+          "$ref": "#/definitions/HealthcareFhirResourceType",
+          "description": "Type of HL7 FHIR resource.",
+          "x-ms-client-name": "FhirResourceType"
+        },
         "resourceFhirAccount": {
           "type": "string",
           "description": "Domain name of FHIR account for this resource.",
@@ -3670,11 +3630,6 @@
           "format": "int64",
           "description": "VersionId of HL7 FHIR resource. It changes when the resource is created, updated, or deleted(soft-deletion).",
           "x-ms-client-name": "FhirResourceVersionId"
-        },
-        "resourceType": {
-          "$ref": "#/definitions/HealthcareFhirResourceType",
-          "description": "Type of HL7 FHIR resource.",
-          "x-ms-client-name": "FhirResourceType"
         }
       }
     },
@@ -4660,6 +4615,11 @@
       "type": "object",
       "description": "Schema of the Data property of an EventGridEvent for a Microsoft.HealthcareApis.FhirResourceUpdated event.",
       "properties": {
+        "resourceType": {
+          "$ref": "#/definitions/HealthcareFhirResourceType",
+          "description": "Type of HL7 FHIR resource.",
+          "x-ms-client-name": "FhirResourceType"
+        },
         "resourceFhirAccount": {
           "type": "string",
           "description": "Domain name of FHIR account for this resource.",
@@ -4675,11 +4635,6 @@
           "format": "int64",
           "description": "VersionId of HL7 FHIR resource. It changes when the resource is created, updated, or deleted(soft-deletion).",
           "x-ms-client-name": "FhirResourceVersionId"
-        },
-        "resourceType": {
-          "$ref": "#/definitions/HealthcareFhirResourceType",
-          "description": "Type of HL7 FHIR resource.",
-          "x-ms-client-name": "FhirResourceType"
         }
       }
     },
@@ -5147,11 +5102,17 @@
         },
         "serviceTags": {
           "type": "object",
-          "description": "The tags of the deployed service."
+          "description": "The tags of the deployed service.",
+          "additionalProperties": {
+            "type": "string"
+          }
         },
         "serviceProperties": {
           "type": "object",
-          "description": "The properties of the deployed service."
+          "description": "The properties of the deployed service.",
+          "additionalProperties": {
+            "type": "string"
+          }
         }
       }
     },
@@ -5169,11 +5130,17 @@
         },
         "modelTags": {
           "type": "object",
-          "description": "The tags of the model that was registered."
+          "description": "The tags of the model that was registered.",
+          "additionalProperties": {
+            "type": "string"
+          }
         },
         "modelProperties": {
           "type": "object",
-          "description": "The properties of the model that was registered."
+          "description": "The properties of the model that was registered.",
+          "additionalProperties": {
+            "type": "string"
+          }
         }
       }
     },
@@ -5199,11 +5166,17 @@
         },
         "runTags": {
           "type": "object",
-          "description": "The tags of the completed Run."
+          "description": "The tags of the completed Run.",
+          "additionalProperties": {
+            "type": "string"
+          }
         },
         "runProperties": {
           "type": "object",
-          "description": "The properties of the completed Run."
+          "description": "The properties of the completed Run.",
+          "additionalProperties": {
+            "type": "string"
+          }
         }
       }
     },
@@ -5229,11 +5202,17 @@
         },
         "runTags": {
           "type": "object",
-          "description": "The tags of the Machine Learning Run."
+          "description": "The tags of the Machine Learning Run.",
+          "additionalProperties": {
+            "type": "string"
+          }
         },
         "runProperties": {
           "type": "object",
-          "description": "The properties of the Machine Learning Run."
+          "description": "The properties of the Machine Learning Run.",
+          "additionalProperties": {
+            "type": "string"
+          }
         },
         "runStatus": {
           "type": "string",
@@ -5574,10 +5553,6 @@
       "type": "object",
       "description": "The event data for a Job output.",
       "properties": {
-        "oDataType": {
-          "type": "string",
-          "description": "Discriminator property for MediaJobOutput."
-        },
         "@odataType": {
           "type": "string",
           "description": "The discriminator for derived types."
@@ -5600,9 +5575,8 @@
           "description": "Gets the Job output state."
         }
       },
-      "discriminator": "oDataType",
+      "discriminator": "@odataType",
       "required": [
-        "oDataType",
         "@odataType",
         "progress",
         "state"
@@ -7336,34 +7310,37 @@
           "type": "string",
           "description": "The request id generated by the storage service for the storage API operation that triggered this event."
         },
-        "identity": {
+        "contentType": {
           "type": "string",
-          "description": "The identity of the requester that triggered this event."
-        },
-        "storageDiagnostics": {
-          "type": "object",
-          "description": "For service use only. Diagnostic data occasionally included by the Azure Storage service. This property should be ignored by event consumers."
-        },
-        "sequencer": {
-          "type": "string",
-          "description": "An opaque string value representing the logical sequence of events for any particular blob name. Users can use standard string comparison to understand the relative sequence of two events on the same blob name."
+          "description": "The content type of the blob. This is the same as what would be returned in the Content-Type header from the blob."
         },
         "contentLength": {
           "type": "integer",
           "format": "int64",
           "description": "The size of the blob in bytes. This is the same as what would be returned in the Content-Length header from the blob."
         },
+        "blobType": {
+          "type": "string",
+          "description": "The type of blob."
+        },
         "url": {
           "type": "string",
           "description": "The path to the blob."
         },
-        "contentType": {
+        "sequencer": {
           "type": "string",
-          "description": "The content type of the blob. This is the same as what would be returned in the Content-Type header from the blob."
+          "description": "An opaque string value representing the logical sequence of events for any particular blob name. Users can use standard string comparison to understand the relative sequence of two events on the same blob name."
         },
-        "blobType": {
+        "identity": {
           "type": "string",
-          "description": "The type of blob."
+          "description": "The identity of the requester that triggered this event."
+        },
+        "storageDiagnostics": {
+          "type": "object",
+          "description": "For service use only. Diagnostic data occasionally included by the Azure Storage service. This property should be ignored by event consumers.",
+          "additionalProperties": {
+            "type": "string"
+          }
         }
       }
     },
@@ -7371,15 +7348,6 @@
       "type": "object",
       "description": "Schema of the Data property of an EventGridEvent for a Microsoft.Storage.BlobCreated event.",
       "properties": {
-        "eTag": {
-          "type": "string",
-          "description": "The etag of the blob at the time this event was triggered."
-        },
-        "contentOffset": {
-          "type": "integer",
-          "format": "int64",
-          "description": "The offset of the blob in bytes."
-        },
         "api": {
           "type": "string",
           "description": "The name of the API/operation that triggered this event."
@@ -7392,34 +7360,35 @@
           "type": "string",
           "description": "The request id generated by the storage service for the storage API operation that triggered this event."
         },
-        "identity": {
+        "eTag": {
           "type": "string",
-          "description": "The identity of the requester that triggered this event."
+          "description": "The etag of the blob at the time this event was triggered."
         },
-        "storageDiagnostics": {
-          "type": "object",
-          "description": "For service use only. Diagnostic data occasionally included by the Azure Storage service. This property should be ignored by event consumers."
-        },
-        "sequencer": {
+        "contentType": {
           "type": "string",
-          "description": "An opaque string value representing the logical sequence of events for any particular blob name. Users can use standard string comparison to understand the relative sequence of two events on the same blob name."
+          "description": "The content type of the blob. This is the same as what would be returned in the Content-Type header from the blob."
         },
         "contentLength": {
           "type": "integer",
           "format": "int64",
           "description": "The size of the blob in bytes. This is the same as what would be returned in the Content-Length header from the blob."
         },
-        "url": {
-          "type": "string",
-          "description": "The path to the blob."
-        },
-        "contentType": {
-          "type": "string",
-          "description": "The content type of the blob. This is the same as what would be returned in the Content-Type header from the blob."
+        "contentOffset": {
+          "type": "integer",
+          "format": "int64",
+          "description": "The offset of the blob in bytes."
         },
         "blobType": {
           "type": "string",
           "description": "The type of blob."
+        },
+        "url": {
+          "type": "string",
+          "description": "The path to the blob."
+        },
+        "sequencer": {
+          "type": "string",
+          "description": "An opaque string value representing the logical sequence of events for any particular blob name. Users can use standard string comparison to understand the relative sequence of two events on the same blob name."
         }
       }
     },
@@ -7427,10 +7396,6 @@
       "type": "object",
       "description": "Schema of the Data property of an EventGridEvent for a Microsoft.Storage.BlobDeleted event.",
       "properties": {
-        "url": {
-          "type": "string",
-          "description": "The path to the blob."
-        },
         "api": {
           "type": "string",
           "description": "The name of the API/operation that triggered this event."
@@ -7443,18 +7408,6 @@
           "type": "string",
           "description": "The request id generated by the storage service for the storage API operation that triggered this event."
         },
-        "identity": {
-          "type": "string",
-          "description": "The identity of the requester that triggered this event."
-        },
-        "storageDiagnostics": {
-          "type": "object",
-          "description": "For service use only. Diagnostic data occasionally included by the Azure Storage service. This property should be ignored by event consumers."
-        },
-        "sequencer": {
-          "type": "string",
-          "description": "An opaque string value representing the logical sequence of events for any particular blob name. Users can use standard string comparison to understand the relative sequence of two events on the same blob name."
-        },
         "contentType": {
           "type": "string",
           "description": "The content type of the blob. This is the same as what would be returned in the Content-Type header from the blob."
@@ -7462,6 +7415,25 @@
         "blobType": {
           "type": "string",
           "description": "The type of blob."
+        },
+        "url": {
+          "type": "string",
+          "description": "The path to the blob."
+        },
+        "sequencer": {
+          "type": "string",
+          "description": "An opaque string value representing the logical sequence of events for any particular blob name. Users can use standard string comparison to understand the relative sequence of two events on the same blob name."
+        },
+        "identity": {
+          "type": "string",
+          "description": "The identity of the requester that triggered this event."
+        },
+        "storageDiagnostics": {
+          "type": "object",
+          "description": "For service use only. Diagnostic data occasionally included by the Azure Storage service. This property should be ignored by event consumers.",
+          "additionalProperties": {
+            "type": "string"
+          }
         }
       }
     },
@@ -7504,14 +7476,6 @@
       "type": "object",
       "description": "Schema of the Data property of an EventGridEvent for a Microsoft.Storage.BlobRenamed event.",
       "properties": {
-        "sourceUrl": {
-          "type": "string",
-          "description": "The path to the blob that was renamed."
-        },
-        "destinationUrl": {
-          "type": "string",
-          "description": "The new path to the blob after the rename operation."
-        },
         "api": {
           "type": "string",
           "description": "The name of the API/operation that triggered this event."
@@ -7524,17 +7488,28 @@
           "type": "string",
           "description": "The request id generated by the storage service for the storage API operation that triggered this event."
         },
+        "sourceUrl": {
+          "type": "string",
+          "description": "The path to the blob that was renamed."
+        },
+        "destinationUrl": {
+          "type": "string",
+          "description": "The new path to the blob after the rename operation."
+        },
+        "sequencer": {
+          "type": "string",
+          "description": "An opaque string value representing the logical sequence of events for any particular blob name. Users can use standard string comparison to understand the relative sequence of two events on the same blob name."
+        },
         "identity": {
           "type": "string",
           "description": "The identity of the requester that triggered this event."
         },
         "storageDiagnostics": {
           "type": "object",
-          "description": "For service use only. Diagnostic data occasionally included by the Azure Storage service. This property should be ignored by event consumers."
-        },
-        "sequencer": {
-          "type": "string",
-          "description": "An opaque string value representing the logical sequence of events for any particular blob name. Users can use standard string comparison to understand the relative sequence of two events on the same blob name."
+          "description": "For service use only. Diagnostic data occasionally included by the Azure Storage service. This property should be ignored by event consumers.",
+          "additionalProperties": {
+            "type": "string"
+          }
         }
       }
     },
@@ -7554,34 +7529,37 @@
           "type": "string",
           "description": "The request id generated by the storage service for the storage API operation that triggered this event."
         },
-        "identity": {
+        "contentType": {
           "type": "string",
-          "description": "The identity of the requester that triggered this event."
-        },
-        "storageDiagnostics": {
-          "type": "object",
-          "description": "For service use only. Diagnostic data occasionally included by the Azure Storage service. This property should be ignored by event consumers."
-        },
-        "sequencer": {
-          "type": "string",
-          "description": "An opaque string value representing the logical sequence of events for any particular blob name. Users can use standard string comparison to understand the relative sequence of two events on the same blob name."
+          "description": "The content type of the blob. This is the same as what would be returned in the Content-Type header from the blob."
         },
         "contentLength": {
           "type": "integer",
           "format": "int64",
           "description": "The size of the blob in bytes. This is the same as what would be returned in the Content-Length header from the blob."
         },
+        "blobType": {
+          "type": "string",
+          "description": "The type of blob."
+        },
         "url": {
           "type": "string",
           "description": "The path to the blob."
         },
-        "contentType": {
+        "sequencer": {
           "type": "string",
-          "description": "The content type of the blob. This is the same as what would be returned in the Content-Type header from the blob."
+          "description": "An opaque string value representing the logical sequence of events for any particular blob name. Users can use standard string comparison to understand the relative sequence of two events on the same blob name."
         },
-        "blobType": {
+        "identity": {
           "type": "string",
-          "description": "The type of blob."
+          "description": "The identity of the requester that triggered this event."
+        },
+        "storageDiagnostics": {
+          "type": "object",
+          "description": "For service use only. Diagnostic data occasionally included by the Azure Storage service. This property should be ignored by event consumers.",
+          "additionalProperties": {
+            "type": "string"
+          }
         }
       }
     },
@@ -7589,6 +7567,18 @@
       "type": "object",
       "description": "Schema of the Data property of an EventGridEvent for a Microsoft.Storage.DirectoryCreated event.",
       "properties": {
+        "api": {
+          "type": "string",
+          "description": "The name of the API/operation that triggered this event."
+        },
+        "clientRequestId": {
+          "type": "string",
+          "description": "A request id provided by the client of the storage API operation that triggered this event."
+        },
+        "requestId": {
+          "type": "string",
+          "description": "The request id generated by the storage service for the storage API operation that triggered this event."
+        },
         "eTag": {
           "type": "string",
           "description": "The etag of the directory at the time this event was triggered."
@@ -7597,6 +7587,27 @@
           "type": "string",
           "description": "The path to the directory."
         },
+        "sequencer": {
+          "type": "string",
+          "description": "An opaque string value representing the logical sequence of events for any particular directory name. Users can use standard string comparison to understand the relative sequence of two events on the same directory name."
+        },
+        "identity": {
+          "type": "string",
+          "description": "The identity of the requester that triggered this event."
+        },
+        "storageDiagnostics": {
+          "type": "object",
+          "description": "For service use only. Diagnostic data occasionally included by the Azure Storage service. This property should be ignored by event consumers.",
+          "additionalProperties": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "StorageDirectoryDeletedEventData": {
+      "type": "object",
+      "description": "Schema of the Data property of an EventGridEvent for a Microsoft.Storage.DirectoryDeleted event.",
+      "properties": {
         "api": {
           "type": "string",
           "description": "The name of the API/operation that triggered this event."
@@ -7609,24 +7620,6 @@
           "type": "string",
           "description": "The request id generated by the storage service for the storage API operation that triggered this event."
         },
-        "identity": {
-          "type": "string",
-          "description": "The identity of the requester that triggered this event."
-        },
-        "storageDiagnostics": {
-          "type": "object",
-          "description": "For service use only. Diagnostic data occasionally included by the Azure Storage service. This property should be ignored by event consumers."
-        },
-        "sequencer": {
-          "type": "string",
-          "description": "An opaque string value representing the logical sequence of events for any particular directory name. Users can use standard string comparison to understand the relative sequence of two events on the same directory name."
-        }
-      }
-    },
-    "StorageDirectoryDeletedEventData": {
-      "type": "object",
-      "description": "Schema of the Data property of an EventGridEvent for a Microsoft.Storage.DirectoryDeleted event.",
-      "properties": {
         "url": {
           "type": "string",
           "description": "The path to the deleted directory."
@@ -7635,6 +7628,27 @@
           "type": "string",
           "description": "Is this event for a recursive delete operation."
         },
+        "sequencer": {
+          "type": "string",
+          "description": "An opaque string value representing the logical sequence of events for any particular directory name. Users can use standard string comparison to understand the relative sequence of two events on the same directory name."
+        },
+        "identity": {
+          "type": "string",
+          "description": "The identity of the requester that triggered this event."
+        },
+        "storageDiagnostics": {
+          "type": "object",
+          "description": "For service use only. Diagnostic data occasionally included by the Azure Storage service. This property should be ignored by event consumers.",
+          "additionalProperties": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "StorageDirectoryRenamedEventData": {
+      "type": "object",
+      "description": "Schema of the Data property of an EventGridEvent for a Microsoft.Storage.DirectoryRenamed event.",
+      "properties": {
         "api": {
           "type": "string",
           "description": "The name of the API/operation that triggered this event."
@@ -7647,24 +7661,6 @@
           "type": "string",
           "description": "The request id generated by the storage service for the storage API operation that triggered this event."
         },
-        "identity": {
-          "type": "string",
-          "description": "The identity of the requester that triggered this event."
-        },
-        "storageDiagnostics": {
-          "type": "object",
-          "description": "For service use only. Diagnostic data occasionally included by the Azure Storage service. This property should be ignored by event consumers."
-        },
-        "sequencer": {
-          "type": "string",
-          "description": "An opaque string value representing the logical sequence of events for any particular directory name. Users can use standard string comparison to understand the relative sequence of two events on the same directory name."
-        }
-      }
-    },
-    "StorageDirectoryRenamedEventData": {
-      "type": "object",
-      "description": "Schema of the Data property of an EventGridEvent for a Microsoft.Storage.DirectoryRenamed event.",
-      "properties": {
         "sourceUrl": {
           "type": "string",
           "description": "The path to the directory that was renamed."
@@ -7673,17 +7669,9 @@
           "type": "string",
           "description": "The new path to the directory after the rename operation."
         },
-        "api": {
+        "sequencer": {
           "type": "string",
-          "description": "The name of the API/operation that triggered this event."
-        },
-        "clientRequestId": {
-          "type": "string",
-          "description": "A request id provided by the client of the storage API operation that triggered this event."
-        },
-        "requestId": {
-          "type": "string",
-          "description": "The request id generated by the storage service for the storage API operation that triggered this event."
+          "description": "An opaque string value representing the logical sequence of events for any particular directory name. Users can use standard string comparison to understand the relative sequence of two events on the same directory name."
         },
         "identity": {
           "type": "string",
@@ -7691,11 +7679,10 @@
         },
         "storageDiagnostics": {
           "type": "object",
-          "description": "For service use only. Diagnostic data occasionally included by the Azure Storage service. This property should be ignored by event consumers."
-        },
-        "sequencer": {
-          "type": "string",
-          "description": "An opaque string value representing the logical sequence of events for any particular directory name. Users can use standard string comparison to understand the relative sequence of two events on the same directory name."
+          "description": "For service use only. Diagnostic data occasionally included by the Azure Storage service. This property should be ignored by event consumers.",
+          "additionalProperties": {
+            "type": "string"
+          }
         }
       }
     },
@@ -7815,19 +7802,14 @@
       "type": "object",
       "description": "Schema of the Data property of an EventGridEvent for an Microsoft.Storage.StorageTaskCompleted event.",
       "properties": {
-        "completedDateTime": {
-          "type": "string",
-          "format": "date-time",
-          "description": "The time at which a storage task was completed."
-        },
         "status": {
           "$ref": "#/definitions/StorageTaskCompletedStatus",
           "description": "The status for a storage task."
         },
-        "summaryReportBlobUrl": {
+        "completedDateTime": {
           "type": "string",
-          "format": "uri",
-          "description": "The summary report blob url for a storage task"
+          "format": "date-time",
+          "description": "The time at which a storage task was completed."
         },
         "taskExecutionId": {
           "type": "string",
@@ -7836,6 +7818,11 @@
         "taskName": {
           "type": "string",
           "description": "The task name for a storage task."
+        },
+        "summaryReportBlobUrl": {
+          "type": "string",
+          "format": "uri",
+          "description": "The summary report blob url for a storage task"
         }
       }
     },

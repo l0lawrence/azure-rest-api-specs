@@ -94,8 +94,8 @@ namespace Microsoft.EventGrid.SystemEvents {
     verb?: string;
   }
 
-  /** App Action Type */
-  enum AppAction {
+  /** Type of action of the operation */
+  union  AppAction {
     /** Web app was restarted. */
     "Restarted",
 
@@ -113,10 +113,12 @@ namespace Microsoft.EventGrid.SystemEvents {
 
     /** The job has failed to complete. */
     "Failed",
+
+    string,
   }
 
   /** Kind of environment where app service plan is. */
-  enum StampKind {
+  union StampKind {
     /** App Service Plan is running on a public stamp. */
     "Public",
 
@@ -125,12 +127,16 @@ namespace Microsoft.EventGrid.SystemEvents {
 
     /** App Service Plan is running on an App Service Environment V2. */
     "AseV2",
+
+    string,
   }
 
   /** Type of action on the app service plan. */
-  enum AppServicePlanAction {
+  union AppServicePlanAction {
     /** App Service plan is being updated. */
     "Updated",
+
+    string,
   }
 
   /** Detail of action on the app service plan. */
@@ -146,7 +152,7 @@ namespace Microsoft.EventGrid.SystemEvents {
   }
 
   /** Asynchronous operation status of the operation on the app service plan. */
-  enum AsyncStatus {
+  union  AsyncStatus {
     /** Async operation has started. */
     "Started",
 
@@ -155,6 +161,8 @@ namespace Microsoft.EventGrid.SystemEvents {
 
     /** Async operation failed to complete. */
     "Failed",
+
+    string,
   }
 
   alias WebAppBaseEventData = {

@@ -4,6 +4,9 @@ import "./HealthcareApis.tsp";
 import "./IotHub.tsp";
 import "./ResourceNotifications.tsp";
 import "./Storage.tsp";
+import "./DataBox.tsp";
+import "./EventGrid.tsp";
+
 import "@azure-tools/typespec-client-generator-core";
 
 using Azure.ClientGenerator.Core;
@@ -35,19 +38,51 @@ using Azure.ClientGenerator.Core;
   "autorest"
 );
 
-@@clientName(Microsoft.EventGrid.SystemEvents.HealthcareFhirResourceBaseEventData.resourceFhirAccount,
+@@clientName(Microsoft.EventGrid.SystemEvents.HealthcareFhirResourceCreatedEventData.resourceFhirAccount,
   "FhirServiceHostName",
   "autorest"
 );
-@@clientName(Microsoft.EventGrid.SystemEvents.HealthcareFhirResourceBaseEventData.resourceFhirId,
+@@clientName(Microsoft.EventGrid.SystemEvents.HealthcareFhirResourceCreatedEventData.resourceFhirId,
   "FhirResourceId",
   "autorest"
 );
-@@clientName(Microsoft.EventGrid.SystemEvents.HealthcareFhirResourceBaseEventData.resourceVersionId,
+@@clientName(Microsoft.EventGrid.SystemEvents.HealthcareFhirResourceCreatedEventData.resourceVersionId,
   "FhirResourceVersionId",
   "autorest"
 );
-@@clientName(Microsoft.EventGrid.SystemEvents.HealthcareFhirResourceBaseEventData.resourceType,
+@@clientName(Microsoft.EventGrid.SystemEvents.HealthcareFhirResourceCreatedEventData.resourceType,
+  "FhirResourceType",
+  "autorest"
+);
+@@clientName(Microsoft.EventGrid.SystemEvents.HealthcareFhirResourceUpdatedEventData.resourceFhirAccount,
+  "FhirServiceHostName",
+  "autorest"
+);
+@@clientName(Microsoft.EventGrid.SystemEvents.HealthcareFhirResourceUpdatedEventData.resourceFhirId,
+  "FhirResourceId",
+  "autorest"
+);
+@@clientName(Microsoft.EventGrid.SystemEvents.HealthcareFhirResourceUpdatedEventData.resourceVersionId,
+  "FhirResourceVersionId",
+  "autorest"
+);
+@@clientName(Microsoft.EventGrid.SystemEvents.HealthcareFhirResourceUpdatedEventData.resourceType,
+  "FhirResourceType",
+  "autorest"
+);
+@@clientName(Microsoft.EventGrid.SystemEvents.HealthcareFhirResourceDeletedEventData.resourceFhirAccount,
+  "FhirServiceHostName",
+  "autorest"
+);
+@@clientName(Microsoft.EventGrid.SystemEvents.HealthcareFhirResourceDeletedEventData.resourceFhirId,
+  "FhirResourceId",
+  "autorest"
+);
+@@clientName(Microsoft.EventGrid.SystemEvents.HealthcareFhirResourceDeletedEventData.resourceVersionId,
+  "FhirResourceVersionId",
+  "autorest"
+);
+@@clientName(Microsoft.EventGrid.SystemEvents.HealthcareFhirResourceDeletedEventData.resourceType,
   "FhirResourceType",
   "autorest"
 );
