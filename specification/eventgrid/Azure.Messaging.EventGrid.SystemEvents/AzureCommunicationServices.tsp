@@ -111,7 +111,18 @@ model AcsChatThreadDeletedEventData
 #suppress "@azure-tools/typespec-azure-core/composition-over-inheritance" "Maintain compatibility with existing models."
 model AcsChatThreadPropertiesUpdatedPerUserEventData
   extends AcsChatThreadEventBaseProperties {
-  ...AcsChatThreadPropertiesBaseEventData;
+  /** The communication identifier of the user who updated the thread properties */
+  editedByCommunicationIdentifier?: CommunicationIdentifierModel;
+
+  /** The time at which the properties of the thread were updated */
+  editTime?: utcDateTime;
+
+  /** The thread metadata */
+  metadata?: Record<string>;
+
+  /** The updated thread properties */
+  #suppress "@azure-tools/typespec-azure-core/bad-record-type" "The type of properties is object with additionalProperties: object"
+  properties?: Record<string>;
 }
 
 /** Schema of the Data property of an EventGridEvent for a Microsoft.Communication.ChatThreadPropertiesUpdated event. */
@@ -683,7 +694,7 @@ model AcsRouterWorkerSelector {
 
   /** Router Job Worker Selector Value */
   #suppress "@azure-tools/typespec-azure-core/no-unknown" "The type of labelValue is object"
-  labelValue?: {};
+  labelValue?: Record<string>;
 
   /** Router Job Worker Selector Time to Live in Seconds */
   @encode("ISO8601") // TODO verify this is timespan in C#
@@ -735,7 +746,11 @@ alias AcsChatThreadPropertiesBaseEventData = {
   editTime?: utcDateTime;
 
   /** The updated thread properties */
+  #suppress "@azure-tools/typespec-azure-core/bad-record-type" "The type of properties is object with additionalProperties: object"
   properties?: Record<string>;
+
+  /** The thread metadata */
+  metadata?: Record<string>;
 };
 
 alias AcsChatParticipantBaseEventData = {

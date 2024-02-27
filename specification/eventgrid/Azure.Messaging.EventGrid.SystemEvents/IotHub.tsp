@@ -89,7 +89,7 @@ model DeviceConnectionStateEventProperties {
 model DeviceTelemetryEventProperties {
   /** The content of the message from the device. */
   #suppress "@azure-tools/typespec-azure-core/no-unknown" "The type of body is object"
-  body?: {};
+  body?: Record<string>;
 
   /** Application properties are user-defined strings that can be added to the message. These fields are optional. */
   properties?: Record<string>;

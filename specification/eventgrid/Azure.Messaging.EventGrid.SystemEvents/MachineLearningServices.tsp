@@ -11,11 +11,11 @@ model MachineLearningServicesModelRegisteredEventData {
 
   /** The tags of the model that was registered. */
   #suppress "@azure-tools/typespec-azure-core/no-unknown" "Model tags is type object"
-  modelTags?: {};
+  modelTags?: Record<string>;
 
   /** The properties of the model that was registered. */
   #suppress "@azure-tools/typespec-azure-core/no-unknown" "Model tags is type object"
-  modelProperties?: {};
+  modelProperties?: Record<string>;
 }
 
 /** Schema of the Data property of an EventGridEvent for a Microsoft.MachineLearningServices.ModelDeployed event. */
@@ -31,11 +31,11 @@ model MachineLearningServicesModelDeployedEventData {
 
   /** The tags of the deployed service. */
   #suppress "@azure-tools/typespec-azure-core/no-unknown" "Service tags is type any"
-  serviceTags?: {};
+  serviceTags?: Record<string>;
 
   /** The properties of the deployed service. */
   #suppress "@azure-tools/typespec-azure-core/no-unknown" "Service properties is type any"
-  serviceProperties?: {};
+  serviceProperties?: Record<string>;
 }
 
 /** Schema of the Data property of an EventGridEvent for a Microsoft.MachineLearningServices.RunCompleted event. */
@@ -54,11 +54,11 @@ model MachineLearningServicesRunCompletedEventData {
 
   /** The tags of the completed Run. */
   #suppress "@azure-tools/typespec-azure-core/no-unknown" "Run tags is type any"
-  runTags?: {};
+  runTags?: Record<string>;
 
   /** The properties of the completed Run. */
   #suppress "@azure-tools/typespec-azure-core/no-unknown" "Run properties is type any"
-  runProperties?: {};
+  runProperties?: Record<string>;
 }
 
 /** Schema of the Data property of an EventGridEvent for a Microsoft.MachineLearningServices.DatasetDriftDetected event. */
@@ -104,11 +104,11 @@ model MachineLearningServicesRunStatusChangedEventData {
 
   /** The tags of the Machine Learning Run. */
   #suppress "@azure-tools/typespec-azure-core/no-unknown" "Run tags is type object"
-  runTags?: {};
+  runTags?: Record<string>;
 
   /** The properties of the Machine Learning Run. */
   #suppress "@azure-tools/typespec-azure-core/no-unknown" "Run properties is type object"
-  runProperties?: {};
+  runProperties?: Record<string>;
 
   /** The status of the Machine Learning Run. */
   runStatus?: string;

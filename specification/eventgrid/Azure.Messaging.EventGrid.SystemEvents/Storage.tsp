@@ -13,8 +13,7 @@ namespace Microsoft.EventGrid.SystemEvents {
     /** An opaque string value representing the logical sequence of events for any particular blob name. Users can use standard string comparison to understand the relative sequence of two events on the same blob name. */
     sequencer?: string;
 
-    ...StorageUrlBaseEventData;
-    ...StorageBaseTypeData;
+
   }
 
   /** Schema of the Data property of an EventGridEvent for a Microsoft.Storage.BlobDeleted event. */
@@ -27,7 +26,6 @@ namespace Microsoft.EventGrid.SystemEvents {
     /** An opaque string value representing the logical sequence of events for any particular blob name. Users can use standard string comparison to understand the relative sequence of two events on the same blob name. */
     sequencer?: string;
 
-    ...StorageBaseTypeData;
   }
 
   /** Schema of the Data property of an EventGridEvent for a Microsoft.Storage.DirectoryCreated event. */
@@ -120,8 +118,6 @@ namespace Microsoft.EventGrid.SystemEvents {
     /** An opaque string value representing the logical sequence of events for any particular blob name. Users can use standard string comparison to understand the relative sequence of two events on the same blob name. */
     sequencer?: string;
 
-    ...StorageUrlBaseEventData;
-    ...StorageBaseTypeData;
   }
 
   /** Schema of the Data property of an EventGridEvent for a Microsoft.Storage.AsyncOperationInitiated event. */
@@ -131,8 +127,6 @@ namespace Microsoft.EventGrid.SystemEvents {
     /** An opaque string value representing the logical sequence of events for any particular blob name. Users can use standard string comparison to understand the relative sequence of two events on the same blob name. */
     sequencer?: string;
 
-    ...StorageUrlBaseEventData;
-    ...StorageBaseTypeData;
   }
 
   /** Schema of the Data property of an EventGridEvent for an Microsoft.Storage.BlobInventoryPolicyCompleted event. */
@@ -248,22 +242,6 @@ namespace Microsoft.EventGrid.SystemEvents {
 
     /** For service use only. Diagnostic data occasionally included by the Azure Storage service. This property should be ignored by event consumers. */
     #suppress "@azure-tools/typespec-azure-core/no-unknown" "Type is Any"
-    storageDiagnostics?: {};
-  };
-
-  alias StorageBaseTypeData = {
-    /** The content type of the blob. This is the same as what would be returned in the Content-Type header from the blob. */
-    contentType?: string;
-
-    /** The type of blob. */
-    blobType?: string;
-  };
-
-  alias StorageUrlBaseEventData = {
-    /** The size of the blob in bytes. This is the same as what would be returned in the Content-Length header from the blob. */
-    contentLength?: int64;
-
-    /** The path to the blob. */
-    url?: string;
+    storageDiagnostics?: Record<string>;
   };
 }
