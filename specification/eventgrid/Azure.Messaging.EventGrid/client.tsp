@@ -46,4 +46,4 @@ namespace Customizations{
 @@access(Microsoft.EventGrid.ReceiveResult, Access.public, "python");
 @@access(Microsoft.EventGrid.RejectResult, Access.public, "python");
 @@access(Microsoft.EventGrid.RenewCloudEventLocksResult, Access.public, "python");
-
+@@access(Microsoft.EventGrid.ReleaseDelay, Access.public, "python");
