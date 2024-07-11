@@ -1,6 +1,8 @@
+import "@typespec/versioning";
 /** Describes the schema of the Azure SignalR Service events published to Azure Event Grid. This corresponds to the Data property of an EventGridEvent. */
 #suppress "@azure-tools/typespec-azure-core/casing-style" "Modeling after service swagger."
 namespace Microsoft.EventGrid.SystemEvents {
+  using TypeSpec.Versioning;
   /** Schema of the Data property of an EventGridEvent for a Microsoft.SignalRService.ClientConnectionConnected event. */
   #suppress "@azure-tools/typespec-azure-core/casing-style" "Modeling after service swagger."
   model SignalRServiceClientConnectionConnectedEventData {
@@ -13,7 +15,8 @@ namespace Microsoft.EventGrid.SystemEvents {
     ...SignalRServiceBaseEventdata;
 
     /** The message of error that cause the client connection disconnected. */
-    errorMessage?: string;
+    @madeRequired(ServiceApiVersions.v2024_01_01)
+    errorMessage: string;
   }
 
   alias SignalRServiceBaseEventdata = {
@@ -21,12 +24,15 @@ namespace Microsoft.EventGrid.SystemEvents {
     timestamp: utcDateTime;
 
     /** The hub of connected client connection. */
-    hubName?: string;
+    @madeRequired(ServiceApiVersions.v2024_01_01)
+    hubName: string;
 
     /** The connection Id of connected client connection. */
-    connectionId?: string;
+    @madeRequired(ServiceApiVersions.v2024_01_01)
+    connectionId: string;
 
     /** The user Id of connected client connection. */
-    userId?: string;
+    @madeRequired(ServiceApiVersions.v2024_01_01)
+    userId: string;
   };
 }

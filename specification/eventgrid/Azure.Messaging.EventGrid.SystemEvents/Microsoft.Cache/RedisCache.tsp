@@ -1,14 +1,19 @@
+import "@typespec/versioning";
 /** Describes the schema of the Redis Cache events published to Azure Event Grid. This corresponds to the Data property of an EventGridEvent. */
 namespace Microsoft.EventGrid.SystemEvents {
+  using TypeSpec.Versioning;
+
   alias RedisBaseEventData = {
     /** The time at which the event occurred. */
     timestamp: utcDateTime;
 
     /** The name of this event. */
-    name?: string;
+    @madeRequired(ServiceApiVersions.v2024_01_01)
+    name: string;
 
     /** The status of this event. Failed or  succeeded */
-    status?: string;
+    @madeRequired(ServiceApiVersions.v2024_01_01)
+    status: string;
   };
 
   /** Schema of the Data property of an EventGridEvent for a Microsoft.Cache.PatchingCompleted event. */
