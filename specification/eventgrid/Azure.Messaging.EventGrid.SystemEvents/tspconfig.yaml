@@ -19,7 +19,7 @@ options:
   "@azure-tools/typespec-python":
     package-pprint-name: '"Azure Event Grid System Events"'
     package-version: 4.12.0b1
-    package-dir: "azure-eventgrid"
+    package-dir: "azure-eventgrid-system-events"
     package-name: "{package-dir}"
     emitter-output-dir: "{project-root}/{service-dir}/{package-name}"
     flavor: azure
