@@ -27,10 +27,8 @@ model EventHubCaptureFileCreatedEventData {
   lastSequenceNumber?: int32;
 
   /** The first time from the queue. */
-  @madeRequired(ServiceApiVersions.v2024_01_01)
   firstEnqueueTime: utcDateTime;
 
   /** The last time from the queue. */
-  @madeRequired(ServiceApiVersions.v2024_01_01)
   lastEnqueueTime: utcDateTime;
 }

@@ -28,7 +28,6 @@ alias ContainerRegistryBaseEventData = {
   id: string;
 
   /** The time at which the event occurred. */
-  @madeRequired(ServiceApiVersions.v2024_01_01)
   timestamp: utcDateTime;
 
   /** The action that encompasses the provided event. */

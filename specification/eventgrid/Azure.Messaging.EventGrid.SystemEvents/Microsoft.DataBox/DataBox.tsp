@@ -22,11 +22,9 @@ namespace Microsoft.EventGrid.SystemEvents {
     serialNumber: string;
 
     /** Name of the current Stage */
-    @madeRequired(ServiceApiVersions.v2024_01_01)
     stageName: DataBoxStageName;
 
     /** The time at which the stage happened. */
-    @madeRequired(ServiceApiVersions.v2024_01_01)
     stageTime: utcDateTime;
   };
 

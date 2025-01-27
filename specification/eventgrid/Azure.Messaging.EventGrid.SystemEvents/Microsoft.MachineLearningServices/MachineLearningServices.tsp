@@ -84,11 +84,9 @@ model MachineLearningServicesDatasetDriftDetectedEventData {
   driftCoefficient?: float64;
 
   /** The start time of the target dataset time series that resulted in drift detection. */
-  @madeRequired(ServiceApiVersions.v2024_01_01)
   startTime: utcDateTime;
 
   /** The end time of the target dataset time series that resulted in drift detection. */
-  @madeRequired(ServiceApiVersions.v2024_01_01)
   endTime: utcDateTime;
 }
 

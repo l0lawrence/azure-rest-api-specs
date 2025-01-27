@@ -19,7 +19,6 @@ namespace Microsoft.EventGrid.SystemEvents {
 
   alias PolicyInsightsBaseEventData = {
     /** The time that the resource was scanned by Azure Policy in the Universal ISO 8601 DateTime format yyyy-MM-ddTHH:mm:ss.fffffffZ. */
-    @madeRequired(ServiceApiVersions.v2024_01_01)
     timestamp: utcDateTime;
 
     /** The resource ID of the policy assignment. */

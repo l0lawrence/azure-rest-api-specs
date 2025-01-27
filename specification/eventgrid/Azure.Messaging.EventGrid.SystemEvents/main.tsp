@@ -41,4 +41,10 @@ namespace Microsoft.EventGrid.SystemEvents {
     v2018_01_01: "2018-01-01",
     v2024_01_01: "2024-01-01",
   }
+
+  enum ServiceApiVersionsOverload {
+    v2018_01_01: "2018-01-01",
+    v2024_01_01: "2024-01-01",
+    v2030_01_01: "2030-01-01"
+  }
 }

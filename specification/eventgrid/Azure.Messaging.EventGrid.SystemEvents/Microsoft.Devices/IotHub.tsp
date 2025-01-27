@@ -28,7 +28,6 @@ model DeviceTwinProperties {
   metadata: DeviceTwinMetadata;
 
   /** Version of device twin properties. */
-  @madeRequired(ServiceApiVersions.v2024_01_01)
   version: float32;
 }
 
@@ -39,7 +38,6 @@ model DeviceTwinInfo {
   authenticationType: string;
 
   /** Count of cloud to device messages sent to this device. */
-  @madeRequired(ServiceApiVersions.v2024_01_01)
   cloudToDeviceMessageCount: float32;
 
   /** Whether the device is connected or disconnected. */
@@ -66,7 +64,6 @@ model DeviceTwinInfo {
   statusUpdateTime: string;
 
   /** An integer that is incremented by one each time the device twin is updated. */
-  @madeRequired(ServiceApiVersions.v2024_01_01)
   version: float32;
 
   //TODO: also here
