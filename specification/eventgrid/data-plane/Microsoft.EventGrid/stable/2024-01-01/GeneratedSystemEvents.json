@@ -7331,6 +7331,32 @@
         "httpRequest"
       ]
     },
+    "ServiceApiVersionsOverload": {
+      "type": "string",
+      "enum": [
+        "2018-01-01",
+        "2024-01-01",
+        "2030-01-01"
+      ],
+      "x-ms-enum": {
+        "name": "ServiceApiVersionsOverload",
+        "modelAsString": false,
+        "values": [
+          {
+            "name": "v2018_01_01",
+            "value": "2018-01-01"
+          },
+          {
+            "name": "v2024_01_01",
+            "value": "2024-01-01"
+          },
+          {
+            "name": "v2030_01_01",
+            "value": "2030-01-01"
+          }
+        ]
+      }
+    },
     "ServiceBusActiveMessagesAvailablePeriodicNotificationsEventData": {
       "type": "object",
       "description": "Schema of the Data property of an EventGridEvent for a Microsoft.ServiceBus.ActiveMessagesAvailablePeriodicNotifications event.",
