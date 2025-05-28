@@ -23,6 +23,10 @@ enum Versions {
   @doc("The 2022-12-01 version.")
   @useDependency(Azure.Core.Versions.v1_0_Preview_1)
   v2022_12_01: "2022-12-01",
+
+  @doc("The 2025 version")
+  @useDependency(Azure.Core.Versions.v1_0_Preview_1)
+  v2025_06_01: "2025-06-01",
 }
 
 @doc("A widget.")
@@ -35,6 +39,10 @@ model WidgetSuite {
 
   @doc("The ID of the widget's manufacturer.")
   manufacturerId: string;
+
+  @doc("The really long name")
+  @added(Versions.v2025_06_01)
+  newPropertyNameThatIsSoLongItTriggersPythonPylintGuidelinesRule: string;
 
   @doc("The faked shared model.")
   sharedModel?: FakedSharedModel;
