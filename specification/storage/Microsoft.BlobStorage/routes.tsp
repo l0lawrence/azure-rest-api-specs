@@ -154,7 +154,7 @@ interface Service {
   #suppress "@azure-tools/typespec-azure-core/no-response-body" "Existing API"
   @get
   @sharedRoute
-  getAccountInfo is StorageOperation<
+  getAccountInfo is StorageOperationNoBody<
     {
       ...AccountPropertiesQueryParameters;
       ...TimeoutParameter;
@@ -229,7 +229,7 @@ interface Container {
   #suppress "@azure-tools/typespec-azure-core/no-response-body" "Existing API"
   @put
   @sharedRoute
-  create is StorageOperation<
+  create is StorageOperationNoBody<
     {
       ...ContainerQueryParameters;
       ...TimeoutParameter;
@@ -254,7 +254,7 @@ interface Container {
   #suppress "@azure-tools/typespec-azure-core/no-response-body" "Existing API"
   @get
   @sharedRoute
-  getProperties is StorageOperation<
+  getProperties is StorageOperationNoBody<
     {
       ...ContainerQueryParameters;
       ...TimeoutParameter;
@@ -294,7 +294,7 @@ interface Container {
   #suppress "@azure-tools/typespec-azure-core/no-response-body" "Existing API"
   @delete
   @sharedRoute
-  delete is StorageOperation<
+  delete is StorageOperationNoBody<
     {
       ...ContainerQueryParameters;
       ...TimeoutParameter;
@@ -313,7 +313,7 @@ interface Container {
   #suppress "@azure-tools/typespec-azure-core/use-standard-names" "Existing API"
   @put
   @sharedRoute
-  setMetadata is StorageOperation<
+  setMetadata is StorageOperationNoBody<
     {
       ...ContainerMetadataQueryParameters;
       ...TimeoutParameter;
@@ -380,7 +380,7 @@ interface Container {
   #suppress "@azure-tools/typespec-azure-core/use-standard-names" "Existing API"
   @put
   @sharedRoute
-  restore is StorageOperation<
+  restore is StorageOperationNoBody<
     {
       ...ContainerUndeleteQueryParameters;
 
@@ -405,7 +405,7 @@ interface Container {
   #suppress "@azure-tools/typespec-azure-core/use-standard-names" "Existing API"
   @put
   @sharedRoute
-  rename is StorageOperation<
+  rename is StorageOperationNoBody<
     {
       ...ContainerRenameQueryParameters;
 
@@ -503,7 +503,7 @@ interface Container {
   #suppress "@azure-tools/typespec-azure-core/use-standard-names" "Existing API"
   @put
   @sharedRoute
-  releaseLease is StorageOperation<
+  releaseLease is StorageOperationNoBody<
     {
       ...ContainerLeaseQueryParameters;
       ...LeaseIdRequiredParameter;
@@ -524,7 +524,7 @@ interface Container {
   #suppress "@azure-tools/typespec-azure-core/use-standard-names" "Existing API"
   @put
   @sharedRoute
-  renewLease is StorageOperation<
+  renewLease is StorageOperationNoBody<
     {
       ...ContainerLeaseQueryParameters;
       ...LeaseIdRequiredParameter;
@@ -545,7 +545,7 @@ interface Container {
   #suppress "@azure-tools/typespec-azure-core/no-response-body" "Existing API"
   @put
   @sharedRoute
-  breakLease is StorageOperation<
+  breakLease is StorageOperationNoBody<
     {
       ...ContainerLeaseQueryParameters;
       ...TimeoutParameter;
@@ -568,7 +568,7 @@ interface Container {
   #suppress "@azure-tools/typespec-azure-core/use-standard-names" "Existing API"
   @put
   @sharedRoute
-  changeLease is StorageOperation<
+  changeLease is StorageOperationNoBody<
     {
       ...ContainerLeaseQueryParameters;
       ...LeaseIdRequiredParameter;
@@ -640,7 +640,7 @@ interface Container {
   #suppress "@azure-tools/typespec-azure-core/no-response-body" "Existing API"
   @get
   @sharedRoute
-  getAccountInfo is StorageOperation<
+  getAccountInfo is StorageOperationNoBody<
     {
       ...AccountPropertiesQueryParameters;
       ...TimeoutParameter;
@@ -887,7 +887,7 @@ interface Blob {
   #suppress "@azure-tools/typespec-azure-core/no-response-body" "Existing API"
   @delete
   @sharedRoute
-  delete is StorageOperation<
+  delete is StorageOperationNoBody<
     {
       ...SnapshotParameter;
       ...VersionIdParameter;
@@ -923,7 +923,7 @@ interface Blob {
   #suppress "@azure-tools/typespec-azure-core/no-response-body" "Existing API"
   @put
   @sharedRoute
-  undelete is StorageOperation<
+  undelete is StorageOperationNoBody<
     {
       ...CompUndeleteParameter;
       ...TimeoutParameter;
@@ -937,7 +937,7 @@ interface Blob {
   #suppress "@azure-tools/typespec-azure-core/no-response-body" "Existing API"
   @put
   @sharedRoute
-  setExpiry is StorageOperation<
+  setExpiry is StorageOperationNoBody<
     {
       ...CompExpiryParameter;
       ...TimeoutParameter;
@@ -956,7 +956,7 @@ interface Blob {
   #suppress "@azure-tools/typespec-azure-core/use-standard-names" "Existing API"
   @put
   @sharedRoute
-  setProperties is StorageOperation<
+  setProperties is StorageOperationNoBody<
     {
       ...CompPropertiesParameter;
       ...TimeoutParameter;
@@ -986,7 +986,7 @@ interface Blob {
   #suppress "@azure-tools/typespec-azure-core/use-standard-names" "Existing API"
   @put
   @sharedRoute
-  setImmutabilityPolicy is StorageOperation<
+  setImmutabilityPolicy is StorageOperationNoBody<
     {
       ...CompImmutabilityPoliciesParameter;
       ...TimeoutParameter;
@@ -1007,7 +1007,7 @@ interface Blob {
   #suppress "@azure-tools/typespec-azure-core/no-response-body" "Existing API"
   @delete
   @sharedRoute
-  deleteImmutabilityPolicy is StorageOperation<
+  deleteImmutabilityPolicy is StorageOperationNoBody<
     {
       ...CompImmutabilityPoliciesParameter;
       ...TimeoutParameter;
@@ -1023,7 +1023,7 @@ interface Blob {
   #suppress "@azure-tools/typespec-azure-core/use-standard-names" "Existing API"
   @put
   @sharedRoute
-  setLegalHold is StorageOperation<
+  setLegalHold is StorageOperationNoBody<
     {
       ...CompLegalHoldParameter;
       ...TimeoutParameter;
@@ -1042,7 +1042,7 @@ interface Blob {
   #suppress "@azure-tools/typespec-azure-core/use-standard-names" "Existing API"
   @put
   @sharedRoute
-  setMetadata is StorageOperation<
+  setMetadata is StorageOperationNoBody<
     {
       ...CompMetadataParameter;
       ...TimeoutParameter;
@@ -1101,7 +1101,7 @@ interface Blob {
   #suppress "@azure-tools/typespec-azure-core/use-standard-names" "Existing API"
   @put
   @sharedRoute
-  releaseLease is StorageOperation<
+  releaseLease is StorageOperationNoBody<
     {
       ...CompLeaseParameter;
       ...TimeoutParameter;
@@ -1125,7 +1125,7 @@ interface Blob {
   #suppress "@azure-tools/typespec-azure-core/use-standard-names" "Existing API"
   @put
   @sharedRoute
-  renewLease is StorageOperation<
+  renewLease is StorageOperationNoBody<
     {
       ...CompLeaseParameter;
       ...TimeoutParameter;
@@ -1150,7 +1150,7 @@ interface Blob {
   #suppress "@azure-tools/typespec-azure-core/use-standard-names" "Existing API"
   @put
   @sharedRoute
-  changeLease is StorageOperation<
+  changeLease is StorageOperationNoBody<
     {
       ...CompLeaseParameter;
       ...TimeoutParameter;
@@ -1175,7 +1175,7 @@ interface Blob {
   #suppress "@azure-tools/typespec-azure-core/no-response-body" "Existing API"
   @put
   @sharedRoute
-  breakLease is StorageOperation<
+  breakLease is StorageOperationNoBody<
     {
       ...CompLeaseParameter;
       ...TimeoutParameter;
@@ -1200,7 +1200,7 @@ interface Blob {
   #suppress "@azure-tools/typespec-azure-core/no-response-body" "Existing API"
   @put
   @sharedRoute
-  createSnapshot is StorageOperation<
+  createSnapshot is StorageOperationNoBody<
     {
       ...CompSnapshotParameter;
       ...TimeoutParameter;
@@ -1235,7 +1235,7 @@ interface Blob {
   #suppress "@azure-tools/typespec-azure-core/no-response-body" "Existing API"
   @put
   @sharedRoute
-  startCopyFromUrl is StorageOperation<
+  startCopyFromUrl is StorageOperationNoBody<
     {
       ...TimeoutParameter;
       ...MetadataHeaders;
@@ -1282,7 +1282,7 @@ interface Blob {
   #suppress "@azure-tools/typespec-azure-core/no-response-body" "Existing API"
   @put
   @sharedRoute
-  copyFromUrl is StorageOperation<
+  copyFromUrl is StorageOperationNoBody<
     {
       ...CompCopyParameter;
       ...TimeoutParameter;
@@ -1334,7 +1334,7 @@ interface Blob {
   #suppress "@azure-tools/typespec-azure-core/use-standard-operations" "Existing API"
   @put
   @sharedRoute
-  abortCopyFromUrl is StorageOperation<
+  abortCopyFromUrl is StorageOperationNoBody<
     {
       ...CompCopyParameter;
       ...TimeoutParameter;
@@ -1361,7 +1361,7 @@ interface Blob {
   #suppress "@azure-tools/typespec-azure-core/use-standard-names" "Existing API"
   @put
   @sharedRoute
-  setTier is StorageOperation<
+  setTier is StorageOperationNoBody<
     {
       ...CompTierParameter;
       ...SnapshotParameter;
@@ -1387,7 +1387,7 @@ interface Blob {
   #suppress "@azure-tools/typespec-azure-core/no-response-body" "Existing API"
   @get
   @sharedRoute
-  getAccountInfo is StorageOperation<
+  getAccountInfo is StorageOperationNoBody<
     {
       ...AccountPropertiesQueryParameters;
       ...TimeoutParameter;
@@ -1742,7 +1742,7 @@ interface PageBlob {
   #suppress "@azure-tools/typespec-azure-core/use-standard-names" "Existing API"
   @put
   @sharedRoute
-  resize is StorageOperation<
+  resize is StorageOperationNoBody<
     {
       ...CompPropertiesParameter;
       ...TimeoutParameter;
@@ -1771,7 +1771,7 @@ interface PageBlob {
   #suppress "@azure-tools/typespec-azure-core/use-standard-names" "Existing API"
   @put
   @sharedRoute
-  setSequenceNumber is StorageOperation<
+  setSequenceNumber is StorageOperationNoBody<
     {
       ...CompPropertiesParameter;
       ...TimeoutParameter;
@@ -1796,7 +1796,7 @@ interface PageBlob {
   #suppress "@azure-tools/typespec-azure-core/no-response-body" "Existing API"
   @put
   @sharedRoute
-  copyIncremental is StorageOperation<
+  copyIncremental is StorageOperationNoBody<
     {
       ...CompIncrementalCopyParameter;
       ...TimeoutParameter;
@@ -1925,7 +1925,7 @@ interface AppendBlob {
   #suppress "@azure-tools/typespec-azure-core/use-standard-names" "Existing API"
   @put
   @sharedRoute
-  appendBlockFromUrl is StorageOperation<
+  appendBlockFromUrl is StorageOperationNoBody<
     {
       ...CompAppendBlockParameter;
       ...SourceUrlParameter;
@@ -1977,7 +1977,7 @@ interface AppendBlob {
   #suppress "@azure-tools/typespec-azure-core/use-standard-names" "Existing API"
   @put
   @sharedRoute
-  seal is StorageOperation<
+  seal is StorageOperationNoBody<
     {
       ...CompSealParameter;
       ...TimeoutParameter;
@@ -2164,7 +2164,7 @@ interface BlockBlob {
   #suppress "@azure-tools/typespec-azure-core/use-standard-names" "Existing API"
   @put
   @sharedRoute
-  stageBlockFromUrl is StorageOperation<
+  stageBlockFromUrl is StorageOperationNoBody<
     {
       ...CompBlockParameter;
       ...BlockIdParameter;
